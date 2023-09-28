@@ -4,43 +4,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 public class Banco {
 
-    public static void main(String[] args)
-    {
+    Banco() {
+
         Connection connection = null;
-        try
-        {
+        try {
             // create a database connection
-            connection = DriverManager.getConnection("jdbc:sqlite:C:/Users/53688621808/Documents/Delivery/Usuarios.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:C:/Users/ct67ca/Documents/Delivery/Aplicativo.db");
             Statement statement = connection.createStatement();
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
+            statement.setQueryTimeout(30); // set timeout to 30 sec.
 
             ResultSet rs = statement.executeQuery("select * from Cadastra_Usuario");
-            while(rs.next())
-            {
-                // read the result set
+            while (rs.next()) {
                 System.out.println("name = " + rs.getString("cpf"));
                 System.out.println("id = " + rs.getInt("id_usuario"));
             }
-        }
-        catch(SQLException e)
-        {
-            // if the error message is "out of memory",
-            // it probably means no database file is found
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
-        }
-        finally
-        {
-            try
-            {
-                if(connection != null)
+        } finally {
+            try {
+                if (connection != null)
                     connection.close();
-            }
-            catch(SQLException e)
-            {
-                // connection close failed.
+            } catch (SQLException e) {
+            
                 System.err.println(e.getMessage());
             }
         }

@@ -4,16 +4,16 @@ import java.util.Map;
 
 public class Restaurantes {
     String nome;
-    String localizacao;
+    String cnpj;
     int eixoX, eixoY;
   
  
     Map<String, Integer>lanches= new HashMap<String, Integer>();
    
 
-    public Restaurantes(String nome, String localizacao, int eixoX, int eixoY){
+    public Restaurantes(String nome, String cnpj, int eixoX, int eixoY){
         this.nome = nome;
-        this.localizacao = localizacao;
+        this.cnpj = cnpj;
         this.eixoX = eixoX;
         this.eixoY=eixoY;
     }
@@ -37,7 +37,7 @@ public class Restaurantes {
         return eixoY;
     }
     public String getLocalizacao(){
-        return localizacao;
+        return cnpj;
     }
 
 
