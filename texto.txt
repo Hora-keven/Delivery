@@ -1,0 +1,9 @@
+ <dependencies>
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.43.0.0</version>
+        </dependency>
+    </dependencies>
+
+crie um projeto Maven e no pom coloque essa dependencia!
