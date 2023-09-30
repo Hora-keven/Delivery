@@ -7,8 +7,6 @@ public class Restaurantes {
     String cnpj;
     int eixoX, eixoY;
   
- 
-    Map<String, Integer>lanches= new HashMap<String, Integer>();
    
 
     public Restaurantes(String nome, String cnpj, int eixoX, int eixoY){
@@ -20,12 +18,6 @@ public class Restaurantes {
     public String imprimirCardapio(){
         return "Cardapio Lanches";
     }
-    public void adicionaLanche(String lanche, int valor){
-        lanches.put(lanche, valor);
-    }
-    public void removerLanche(String lanche){
-        lanches.get(lanche);
-    }
    
     public String getNome(){
         return nome;
@@ -36,7 +28,7 @@ public class Restaurantes {
     public int getEixoy(){
         return eixoY;
     }
-    public String getLocalizacao(){
+    public String getCnpj(){
         return cnpj;
     }
 

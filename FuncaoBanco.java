@@ -9,7 +9,7 @@ public class FuncaoBanco {
     Connection connection = null;
 
     FuncaoBanco() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:C:/Users/ct67ca/Documents/Delivery/Aplicativo.db");
+        connection = DriverManager.getConnection("jdbc:sqlite:/home/keven/Documentos/Delivery/Aplicativo.db");
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
 
@@ -19,39 +19,67 @@ public class FuncaoBanco {
             System.out.println("id = " + rs.getInt("id_usuario"));
         }
     }
-    public void Adicionar_restaurante( String nome, String cnpj) throws SQLException{
+    public int getId(int n, String nome) throws SQLException{
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+        String sql = "";
+        String id_escolhido = "";
+
+        switch (n) {
+            case 1:
+                sql = "select id_usuario from Cadastra_Usuario ";
+                id_escolhido = "id_usuario";
+                break;
+
+            case 2:
+                sql = "select id_restaurante from Cadastro_restaurante where nome_restaurante= "+nome;
+                id_escolhido = "id_restaurante";
+
+            case 3:
+                sql = "select id_restaurante from Cadastro_restaurante ";
+                id_escolhido = "id_restaurante";
+            default:
+                break;
+        }
+        ResultSet rs = statement.executeQuery(sql);
+
+        int id = rs.getInt(id_escolhido);
+        return id;
+
+    }
+    public void adicionar_restaurante( Restaurante r) throws SQLException{
 
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
-        String sql = String.format("INSERT INTO Cadastro_restaurante VALUES (null, '%s', '%s')", nome, cnpj);
+        String sql = String.format("INSERT INTO Cadastro_restaurante VALUES (null, '%s', '%s')", r.getNome(), r.getCnpj());
         statement.executeUpdate(sql);
 
 
     }
-    public void Adicionar_usuario( String nome, String senha, String cpf) throws SQLException{
+    public void adicionar_usuario( Usuarios u) throws SQLException{
 
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
-        String sql = String.format("INSERT INTO Cadastra_Usuario VALUES (null, '%s', '%s','%s')", nome, senha, cpf);
+        String sql = String.format("INSERT INTO Cadastra_Usuario VALUES (null, '%s', '%s','%s')", u.getNome(), u.getSenha(), u.getCPF());
         statement.executeUpdate(sql);
 
     }
-    public void Endereco( int x, int y, int fkU, int fkR) throws SQLException{
+    public void endereco(Endereco e) throws SQLException{
 
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
-        String sql = String.format("INSERT INTO Endereco VALUES (null, %s, %s, %s, %s)", x, y, fkU, fkR);
+        String sql = String.format("INSERT INTO Endereco VALUES (null, %s, %s, %s, %s)", e.getEixoX(), e.getEixoY(), e.getFkU(), e.getFkR());
         statement.executeUpdate(sql);
 
     }
-    public void Lanche(String nome, float preco, int fk) throws SQLException{
+    public void lanche(Lanche l ) throws SQLException{
 
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
-        String sql = String.format("INSERT INTO Lanche VALUES (null, %s, %s, %s)", nome, preco, fk);
+        String sql = String.format("INSERT INTO Lanche VALUES (null, %s, %s, %s)", l.getNome(), l.getPreco(), l.getFk_restaurante());
         statement.executeUpdate(sql);
     }
-    public void Pedido(int fkU, float preco_total, int fkR) throws SQLException{
+    public void pedido(int fkU, float preco_total, int fkR) throws SQLException{
 
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
@@ -68,8 +96,8 @@ public class FuncaoBanco {
 
 
     public static void main(String[] args) throws SQLException {
-//        FuncaoBanco f = new FuncaoBanco();
-//        f.Adicionar_restaurante("bOLO DA Ana","55.266.143/0001-31");
+        FuncaoBanco f = new FuncaoBanco();
+        System.out.println( f.getId(1, "bOLO DA Ana"));
 
     }
 
