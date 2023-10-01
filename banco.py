@@ -3,13 +3,13 @@ banco = sqlite3.connect('Aplicativo.db')
 cursor = banco.cursor()
 
 
-
-# cursor.execute('''CREATE TABLE IF NOT EXISTS Cadastra_Usuario (
-#     id_usuario integer not null primary key,
-#     nome varchar(60),
-#     senha varchar(10),
-#     cpf varchar(11)
-#    )''')
+cursor.execute("DROP TABLE Cadastra_Usuario")
+cursor.execute('''CREATE TABLE IF NOT EXISTS Cadastra_Usuario (
+    id_usuario integer not null primary key,
+    nome varchar(60),
+    senha varchar(10),
+    cpf varchar(11)
+   )''')
 
 # cursor.execute('''CREATE TABLE IF NOT EXISTS Cadastro_restaurante (
 #     id_restaurante integer not null primary key,
@@ -19,13 +19,13 @@ cursor = banco.cursor()
 #   )''')
 
 
-cursor.execute("DROP TABLE Endereco")
+
 cursor.execute('''CREATE TABLE IF NOT EXISTS Endereco (
     id_endereco integer not null primary key,
     posicao_x integer,
     posicao_y integer,
-    fk_usuario INTEGER,
-    fk_restaurante integer,
+    fk_usuario INTEGER null,
+    fk_restaurante integer null,
     FOREIGN KEY(fk_restaurante) REFERENCES Endereco(id_endereco),
     FOREIGN KEY(fk_usuario) REFERENCES Endereco(id_endereco)
   )''')
