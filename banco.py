@@ -3,7 +3,7 @@ banco = sqlite3.connect('Aplicativo.db')
 cursor = banco.cursor()
 
 
-cursor.execute("DROP TABLE Cadastra_Usuario")
+# cursor.execute("DROP TABLE Cadastra_Usuario")
 cursor.execute('''CREATE TABLE IF NOT EXISTS Cadastra_Usuario (
     id_usuario integer not null primary key,
     nome varchar(60),
@@ -19,7 +19,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Cadastra_Usuario (
 #   )''')
 
 
-
+# cursor.execute("DROP TABLE Endereco")
 cursor.execute('''CREATE TABLE IF NOT EXISTS Endereco (
     id_endereco integer not null primary key,
     posicao_x integer,

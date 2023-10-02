@@ -1,4 +1,4 @@
-
+package org.example;
 import java.awt.event.*;
 import javax.swing.ImageIcon;
 import java.sql.SQLException;
@@ -25,10 +25,11 @@ public class CadastroEndereco {
     }
 
     CadastroEndereco(String nome){
-      
+        String casa = " /home/keven/Documentos/Delivery/Images/CadastroEndereco.png";
+        String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/CadastroEndereco.png";
         this.nome = nome;
       
-        background.setIcon(new ImageIcon("/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/CadastroEndereco.png"));
+        background.setIcon(new ImageIcon(senai));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 
@@ -45,31 +46,40 @@ public class CadastroEndereco {
                 try {
                     inserindoEndereco(getNome());
                 } catch (SQLException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
               
                
             }
         });
-        
         panel.add(background);
         telaP.add(eixoX);
         telaP.add(eixoY);
-       
         telaP.add(btn);
         telaP.add(panel);
-      
         telaP.setVisible(true);
     }
     public void inserindoEndereco(String cpf) throws SQLException{
         db = new FuncaoBanco();
-        int eixoX = Integer.parseInt(getEixoX());
-        int eixoY = Integer.parseInt(getEixoY());
-        endereco = new Endereco(eixoX, eixoY);
-        int id = db.getId(1, cpf);
-        endereco.setFkU(id);
-        db.endereco(endereco);
+        if(verificaEixoX()==true){
+            int eixoX = Integer.parseInt(getEixoX());
+            int eixoY = Integer.parseInt(getEixoY());
+            endereco = new Endereco(eixoX, eixoY);
+            int id = db.getId(1, cpf);
+            endereco.setFkU(id);
+            db.endereco(endereco);
+        }
+
+    }
+    public boolean verificaEixoX(){
+        int tamanhoX = getEixoX().length();
+        int tamanhoY = getEixoY().length();
+        if(getEixoX().substring(0,tamanhoX).matches("[A-Z]*") || getEixoX().substring(0,tamanhoY).matches("[a-z]*") ){
+            return false;
+        }if(getEixoY().substring(0,tamanhoY).matches("[A-Z]*") ||getEixoY().substring(0,tamanhoY).matches("[a-z]*") ){
+            return false;
+        }
+        return true;
     }
 }
 

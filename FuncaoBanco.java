@@ -1,4 +1,5 @@
 
+package org.example;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,9 +8,23 @@ import java.sql.Statement;
 
 public class FuncaoBanco {
     static Connection connection = null;
-
+    public String path(int op){
+        String casa = " /home/keven/Documentos/Delivery/Aplicativo.db";
+        String senai = "C:\\Users\\53688621808\\Documents\\Delivery\\Aplicativo.db";
+        switch (op){
+            case 1:
+                return senai;
+            case 2:
+                return casa;
+            default:
+                break;
+        }
+        return "";
+    }
     public void selecionar(int opcao) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:/home/keven/Documentos/Delivery/Aplicativo.db");
+
+
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(1));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         String sql = "";
@@ -109,7 +124,7 @@ public class FuncaoBanco {
     }
 
     public void adicionarUsuario(Usuarios u) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:/home/keven/Documentos/Delivery/Aplicativo.db");
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(1));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         String sql = String.format("INSERT INTO Cadastra_Usuario VALUES (null, '%s', '%s','%s')", u.getNome(),

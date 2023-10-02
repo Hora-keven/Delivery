@@ -1,5 +1,6 @@
 
 
+package org.example;
 public class Restaurante {
 
     String nome;

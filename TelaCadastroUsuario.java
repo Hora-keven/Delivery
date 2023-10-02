@@ -1,4 +1,4 @@
-
+package org.example;
 import javax.swing.ImageIcon;
 import java.awt.event.*;
 import java.sql.SQLException;
@@ -28,96 +28,56 @@ public class TelaCadastroUsuario{
     Tela telaP = new Tela();
     Panel panel = new Panel();
     Button btn = new Button();
-    Button btnConfirmar = new Button();
+
     boolean open;
-    boolean dbInsert = false;
     Label mensagem = new Label();
-
-  
-
+    Panel caixaMensagem  = new Panel();
     public void setOpen(boolean open) {
         this.open = open;
     }
-
-    public boolean isDbInsert() {
-        return dbInsert;
-    }
-
-
-    public void setDbInsert(boolean dbInsert) {
-        this.dbInsert = dbInsert;
-    }
-
-
     public boolean isOpen() {
         return open;
     }
-
-  
      TelaCadastroUsuario() throws SQLException{
      
        
         setOpen(true);
         Label background = new Label();
-        background.setIcon(new ImageIcon("/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/telaPrincipal.png"));
+        String casa = "/home/keven/Documentos/Delivery/Images/telaPrincipal.png";
+        String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/telaPrincipal.png";
+        background.setIcon(new ImageIcon(senai));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 
    
         nomeUsuario.setLocation(200, 520);
-       
-    
         cpf.setLocation(200, 590);
-
         senhaI.setLocation(200, 665);
-       
         confirmaSenha.setLocation(200, 740);
-        mensagem.setLocation(300, 500);
+        mensagem.setLocation(300, 200);
+        btn.setText("Próximo >");
+        mensagem.setText("aaaaaaaaaaaaaaaaaaaaaaaa");
 
-        btnConfirmar.addActionListener(new ActionListener(){
-         
-
+        btn.addActionListener(new ActionListener(){
             public void actionPerformed( ActionEvent evt) {
-        
-                if(getSenha().equals(confirmaSenha.getText())&& (!getSenha().equals(null))==(!confirmaSenha.getText().equals(null))){
-                        setDbInsert(true);
-                      
+                if(getSenha().equals(confirmaSenha.getText()) && (!getSenha().equals(null))==(!confirmaSenha.getText().equals(null))){
                         try {
                             inserindoUsuarios();
                         } catch (SQLException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
-
                         System.out.println(getNome());
-                }else if(!senhaI.getText().equals(confirmaSenha.getText()) ){
+                }else if(!senhaI.getText().equals(confirmaSenha.getText())&& (!getSenha().equals(null))==(!confirmaSenha.getText().equals(null)) ){
                     mensagem.setText("Coloque uma senha correta!");
-                } 
-        
-              
-               
-            }
-        });
-      
-       
-
-        btn.setSize(130, 50);
-        btn.setLocation(200,815);
-
-        btnConfirmar.setSize(130, 50);
-        btnConfirmar.setLocation(347,815);
-
-        btn.addActionListener(new ActionListener() {
-            public void actionPerformed( ActionEvent evt)  {
+                }
                 setOpen(false);
-                btn.setEnabled(open);
-                new CadastroEndereco(getCPF());
-              
-               
+
+
             }
         });
-        
-      
+
+        btn.setSize(270, 50);
+        btn.setLocation(197,815);
         panel.add(background);
         telaP.add(nomeUsuario);
         telaP.add(mensagem);
@@ -125,19 +85,38 @@ public class TelaCadastroUsuario{
         telaP.add(senhaI);
         telaP.add(cpf);
         telaP.add(btn);
-        telaP.add(btnConfirmar);
         telaP.add(panel);
-        
         telaP.setVisible(isOpen());
-       
-
-      
     }
     public void inserindoUsuarios() throws SQLException{
         db = new FuncaoBanco();
-        usuario = new Usuarios(getNome(), getSenha(), getCPF());
-        db.adicionarUsuario(usuario);
-    }
+        if (verificaCpf()==true && verificaSenha() == true){
+            usuario = new Usuarios(getNome(), getSenha(), getCPF());
+            db.adicionarUsuario(usuario);
+            new CadastroEndereco(getCPF());
+        }
 
-   
+    }
+    public boolean verificaCpf(){
+        if(getCPF().length() < 11){
+            System.out.println("Faltam alguns digitos");
+            return false;
+        }
+        else if(getCPF().length() > 11){
+            System.out.println("Digitos a mais, digite um CPF correto");
+            return false;
+        }else
+            return true;
+    }
+    public boolean verificaSenha(){
+        if(getSenha().length() < 8){
+            System.out.println("O minimo da senha é 8 digitos");
+            return false;
+        }
+        else if(getSenha().length() > 8 && getSenha().length() < 60){
+            System.out.println("Deu certo");
+            return true;
+        }else
+            return true;
+    }
 }

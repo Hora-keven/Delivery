@@ -1,11 +1,9 @@
-
-
+package org.example;
 
 import javax.swing.JButton;
 
 
 import java.awt.*;
-
 public class Button extends JButton {
 
     public Button (){
