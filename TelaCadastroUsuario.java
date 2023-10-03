@@ -50,10 +50,10 @@ public class TelaCadastroUsuario{
         background.setLocation(0, 0);
 
    
-        nomeUsuario.setLocation(200, 520);
-        cpf.setLocation(200, 590);
-        senhaI.setLocation(200, 665);
-        confirmaSenha.setLocation(200, 740);
+        nomeUsuario.setLocation(190, 520);
+        cpf.setLocation(190, 590);
+        senhaI.setLocation(190, 665);
+        confirmaSenha.setLocation(190, 736);
         mensagem.setLocation(300, 200);
         btn.setText("Próximo >");
         mensagem.setText("aaaaaaaaaaaaaaaaaaaaaaaa");
@@ -63,6 +63,7 @@ public class TelaCadastroUsuario{
                 if(getSenha().equals(confirmaSenha.getText()) && (!getSenha().equals(null))==(!confirmaSenha.getText().equals(null))){
                         try {
                             inserindoUsuarios();
+
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
@@ -77,7 +78,7 @@ public class TelaCadastroUsuario{
         });
 
         btn.setSize(270, 50);
-        btn.setLocation(197,815);
+        btn.setLocation(190,809);
         panel.add(background);
         telaP.add(nomeUsuario);
         telaP.add(mensagem);
@@ -93,7 +94,8 @@ public class TelaCadastroUsuario{
         if (verificaCpf()==true && verificaSenha() == true){
             usuario = new Usuarios(getNome(), getSenha(), getCPF());
             db.adicionarUsuario(usuario);
-            new CadastroEndereco(getCPF());
+            new CadastroEndereco(getCPF(), 1);
+            telaP.dispose();
         }
 
     }

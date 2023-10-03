@@ -3,23 +3,26 @@ banco = sqlite3.connect('Aplicativo.db')
 cursor = banco.cursor()
 
 
-# cursor.execute("DROP TABLE Cadastra_Usuario")
+cursor.execute("DROP TABLE Cadastra_Usuario")
 cursor.execute('''CREATE TABLE IF NOT EXISTS Cadastra_Usuario (
     id_usuario integer not null primary key,
     nome varchar(60),
-    senha varchar(10),
+    senha varchar(60),
     cpf varchar(11)
    )''')
 
-# cursor.execute('''CREATE TABLE IF NOT EXISTS Cadastro_restaurante (
-#     id_restaurante integer not null primary key,
-#     nome_restaurante varchar(60),
-#     cnpj varchar(10)
+cursor.execute("DROP TABLE Cadastro_restaurante")
+cursor.execute('''CREATE TABLE IF NOT EXISTS Cadastro_restaurante (
+    id_restaurante integer not null primary key,
+    nome_restaurante varchar(60),
+    senha varchar(60),
+    cnpj varchar(14)
+    
  
-#   )''')
+  )''')
 
 
-# cursor.execute("DROP TABLE Endereco")
+cursor.execute("DROP TABLE Endereco")
 cursor.execute('''CREATE TABLE IF NOT EXISTS Endereco (
     id_endereco integer not null primary key,
     posicao_x integer,
@@ -40,14 +43,14 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS Lanche(
     )""")
 
 
-# cursor.execute("""CREATE TABLE Pedido(
-#     id_pedido integer not null  primary key,
-#     preço_total varchar(60),
-#     fk_usuario integer,
-#     fk_restaurante integer,
-#     fk_lanche integer,
-#     FOREIGN KEY(fk_lanche) REFERENCES Lanche(id_lanche),
-#     FOREIGN KEY(fk_restaurante) REFERENCES Cadastro_restaurante(id_restaurante),
-#      FOREIGN KEY(fk_usuario) REFERENCES Cadastro_Usuario(id_usuario)
-#     )""")
+cursor.execute("""CREATE TABLE IF NOT EXISTS Pedido(
+    id_pedido integer not null  primary key,
+    preço_total varchar(60),
+    fk_usuario integer,
+    fk_restaurante integer,
+    fk_lanche integer,
+    FOREIGN KEY(fk_lanche) REFERENCES Lanche(id_lanche),
+    FOREIGN KEY(fk_restaurante) REFERENCES Cadastro_restaurante(id_restaurante),
+     FOREIGN KEY(fk_usuario) REFERENCES Cadastro_Usuario(id_usuario)
+    )""")
 banco.commit()

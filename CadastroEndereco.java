@@ -23,11 +23,17 @@ public class CadastroEndereco {
     public String getEixoY() {
         return eixoY.getText();
     }
+    int opcao;
 
-    CadastroEndereco(String nome){
+    public int getOpcao() {
+        return opcao;
+    }
+
+    CadastroEndereco(String nome, int opcao){
         String casa = " /home/keven/Documentos/Delivery/Images/CadastroEndereco.png";
         String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/CadastroEndereco.png";
         this.nome = nome;
+        this.opcao = opcao;
       
         background.setIcon(new ImageIcon(senai));
         background.setSize(650, 1000);
@@ -59,15 +65,33 @@ public class CadastroEndereco {
         telaP.add(panel);
         telaP.setVisible(true);
     }
-    public void inserindoEndereco(String cpf) throws SQLException{
+    public void inserindoEndereco(String formato) throws SQLException{
         db = new FuncaoBanco();
         if(verificaEixoX()==true){
             int eixoX = Integer.parseInt(getEixoX());
             int eixoY = Integer.parseInt(getEixoY());
-            endereco = new Endereco(eixoX, eixoY);
-            int id = db.getId(1, cpf);
-            endereco.setFkU(id);
-            db.endereco(endereco);
+
+            int id;
+            switch (getOpcao()){
+               case 1:
+                   id = db.getId(getOpcao(), formato);
+                   endereco = new Endereco(eixoX, eixoY);
+                   endereco.setFkU(id);
+                   db.endereco(endereco);
+                   break;
+                case 2:
+                    id = db.getId(getOpcao(), formato);
+                    endereco = new Endereco(eixoX, eixoY, id);
+                    db.endereco(endereco);
+                    break;
+                default:
+                    break;
+
+           }
+
+            System.out.println(endereco.getFkR());
+
+
         }
 
     }

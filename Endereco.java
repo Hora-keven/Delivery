@@ -10,6 +10,12 @@ public class Endereco {
         this.eixoX = eixoX;
         this.eixoY = eixoY;
     }
+    public Endereco(int eixoX, int eixoY, int fkR){
+        this.eixoX = eixoX;
+        this.eixoY = eixoY;
+        this.fkR = fkR;
+    }
+
     public void setFkU(int fkU) {
         this.fkU = fkU;
     }
