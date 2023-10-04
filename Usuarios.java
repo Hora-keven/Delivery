@@ -3,7 +3,7 @@
 package org.example;
 public class Usuarios {
 
-        private int id;
+
         String nome;
         private String senha;
         private String CPF;
@@ -12,9 +12,7 @@ public class Usuarios {
                 this.senha = senha;
                 this.CPF = CPF;
         }
-        public int getId() {
-                return id;
-        }
+
 
         public String getNome() {
                 return nome;

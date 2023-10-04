@@ -1,14 +1,15 @@
 package org.example;
-import javax.swing.ImageIcon;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
 
 public class TelaCadastroUsuario{
    
-    Input confirmaSenha = new Input();
+    Senha confirmaSenha = new Senha();
     Input cpf  = new Input();
     Input nomeUsuario = new Input();
-    Input senhaI = new Input();
+    Senha senha = new Senha();
     Usuarios usuario;
     FuncaoBanco db;
    
@@ -17,7 +18,7 @@ public class TelaCadastroUsuario{
     }
 
     public String getSenha() {
-            return senhaI.getText();
+            return senha.getText();
     }
 
     public String getCPF() {
@@ -32,17 +33,13 @@ public class TelaCadastroUsuario{
     boolean open;
     Label mensagem = new Label();
     Panel caixaMensagem  = new Panel();
-    public void setOpen(boolean open) {
-        this.open = open;
-    }
-    public boolean isOpen() {
-        return open;
-    }
+    Label background = new Label();
+
      TelaCadastroUsuario() throws SQLException{
      
        
-        setOpen(true);
-        Label background = new Label();
+
+
         String casa = "/home/keven/Documentos/Delivery/Images/telaPrincipal.png";
         String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/telaPrincipal.png";
         background.setIcon(new ImageIcon(senai));
@@ -52,11 +49,11 @@ public class TelaCadastroUsuario{
    
         nomeUsuario.setLocation(190, 520);
         cpf.setLocation(190, 590);
-        senhaI.setLocation(190, 665);
+        senha.setLocation(190, 665);
         confirmaSenha.setLocation(190, 736);
         mensagem.setLocation(300, 200);
         btn.setText("Próximo >");
-        mensagem.setText("aaaaaaaaaaaaaaaaaaaaaaaa");
+        mensagem.setForeground(Color.WHITE);
 
         btn.addActionListener(new ActionListener(){
             public void actionPerformed( ActionEvent evt) {
@@ -68,10 +65,9 @@ public class TelaCadastroUsuario{
                             e.printStackTrace();
                         }
                         System.out.println(getNome());
-                }else if(!senhaI.getText().equals(confirmaSenha.getText())&& (!getSenha().equals(null))==(!confirmaSenha.getText().equals(null)) ){
+                }else if(!senha.getText().equals(confirmaSenha.getText())&& (!getSenha().equals(null))==(!confirmaSenha.getText().equals(null)) ){
                     mensagem.setText("Coloque uma senha correta!");
                 }
-                setOpen(false);
 
 
             }
@@ -79,22 +75,23 @@ public class TelaCadastroUsuario{
 
         btn.setSize(270, 50);
         btn.setLocation(190,809);
-        panel.add(background);
-        telaP.add(nomeUsuario);
-        telaP.add(mensagem);
-        telaP.add(confirmaSenha);
-        telaP.add(senhaI);
-        telaP.add(cpf);
-        telaP.add(btn);
-        telaP.add(panel);
-        telaP.setVisible(isOpen());
+
+         telaP.add(nomeUsuario);
+         telaP.add(mensagem);
+
+         telaP.add(cpf);
+         telaP.add(btn);
+         telaP.add(confirmaSenha);
+         telaP.add(senha);
+         telaP.add(background);
+         telaP.setVisible(true);
     }
     public void inserindoUsuarios() throws SQLException{
         db = new FuncaoBanco();
         if (verificaCpf()==true && verificaSenha() == true){
             usuario = new Usuarios(getNome(), getSenha(), getCPF());
             db.adicionarUsuario(usuario);
-            new CadastroEndereco(getCPF(), 1);
+            new TelaCadastroEndereco(getCPF(), 1);
             telaP.dispose();
         }
 

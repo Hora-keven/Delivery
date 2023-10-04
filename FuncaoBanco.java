@@ -24,12 +24,12 @@ public class FuncaoBanco {
         }
         return "";
     }
-    public ArrayList selecionar(int opcao, ArrayList<String> nomes) throws SQLException {
+    public ArrayList selecionar(int opcao, ArrayList<String> nomes, boolean t) throws SQLException {
 
 
         connection = DriverManager.getConnection("jdbc:sqlite:"+path(1));
         Statement statement = connection.createStatement();
-        statement.setQueryTimeout(30);
+        statement.setQueryTimeout(0);
         String sql = "";
 
         switch (opcao) {
@@ -50,47 +50,56 @@ public class FuncaoBanco {
             case 5:
                 sql = "Endereco";
                 break;
+
             default:
                 break;
         }
         String sqlFormatado = String.format("select * from %s", sql);
         ResultSet respostaDB = statement.executeQuery(sqlFormatado);
-        int i = 0;
+
+
 
         while (respostaDB.next()) {
-            i++;
             if (sql.equals("Endereco")) {
                 System.out.println(respostaDB.getInt("posicao_x"));
                 System.out.println(respostaDB.getInt("posicao_y"));
                 System.out.println(respostaDB.getInt("fk_usuario"));
                 System.out.println(respostaDB.getInt("fk_restaurante"));
 
-            } else if (sql.equals("Lanche")) {
+            }  if (sql.equals("Lanche")) {
                 System.out.println(respostaDB.getInt("id_lanche"));
                 System.out.println(respostaDB.getString("nome"));
                 System.out.println(respostaDB.getString("preço"));
+                nomes.add(respostaDB.getString("nome"));
+                continue;
 
-            } else if (sql.equals("Pedido")) {
+
+            }  if (sql.equals("Pedido")) {
                 System.out.println(respostaDB.getInt("id_pedido"));
                 System.out.println(respostaDB.getString("preço_total"));
                 System.out.println(respostaDB.getInt("fk_usuario"));
                 System.out.println(respostaDB.getInt("fk_restaurante"));
                 System.out.println(respostaDB.getInt(" fk_lanche"));
 
-            } else if (sql.equals("Cadastra_Usuario")) {
+
+            }  if (sql.equals("Cadastra_Usuario")) {
                 System.out.println("id_usuario: " + respostaDB.getInt("id_usuario"));
                 System.out.println("nome: " + respostaDB.getString("nome"));
+                if(t == true){
+                    nomes.add( respostaDB.getString("senha"));
+                }else nomes.add( respostaDB.getString("cpf"));
 
-            } else if (sql.equals("Cadastro_restaurante")) {
+                continue;
+
+            }  if (sql.equals("Cadastro_restaurante")) {
                 System.out.println("-=-=-=-=-=-=Restaurantes-=-=-=-=-");
                 System.out.println("Numero: " + respostaDB.getInt("id_restaurante"));
                 System.out.println("nome restaurante:" + respostaDB.getString("nome_restaurante"));
-
-
                 nomes.add(respostaDB.getString("nome_restaurante"));
-                return nomes;
-            }
+                continue;
 
+            }
+            return nomes;
         }
         return nomes;
     }
@@ -117,6 +126,7 @@ public class FuncaoBanco {
             case 3:
                 sql = "select id_lanche from Lanche where nome = " + nome;
                 id_escolhido = "id_lanche";
+
             default:
                 break;
         }
@@ -160,7 +170,7 @@ public class FuncaoBanco {
 
     }
 
-    public void lanche(Lanche l) throws SQLException {
+    public void adicionarlanche(Lanche l) throws SQLException {
         connection = DriverManager.getConnection("jdbc:sqlite:"+path(1));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
@@ -170,7 +180,7 @@ public class FuncaoBanco {
 
     }
 
-    public void pedido(int fkU, float preco_total, int fkR) throws SQLException {
+    public void adicionarPedido(int fkU, float preco_total, int fkR) throws SQLException {
 
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);

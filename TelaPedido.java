@@ -8,16 +8,12 @@ import java.sql.SQLException;
 public class TelaPedido {
 
 
-
-
-        Input confirmaSenha = new Input();
-        CheckBox cnpj  = new CheckBox();
-        CheckBox nomeRestaurante = new CheckBox();
-        CheckBox senha = new CheckBox();
+        JPasswordField senha = new JPasswordField();
+        CheckBox lanches  = new CheckBox(2);
+        CheckBox nomeRestaurante = new CheckBox(1);
+        CheckBox usuarios = new CheckBox(3);
         Restaurante restaurante;
         FuncaoBanco db;
-
-
 
         Tela telaP = new Tela();
         Panel panel = new Panel();
@@ -34,9 +30,9 @@ public class TelaPedido {
             background.setLocation(0, 0);
 
             nomeRestaurante.setLocation(199, 522);
-            cnpj.setLocation(199, 620);
-            senha.setLocation(199, 720);
-            confirmaSenha.setLocation(190, 824);
+            lanches.setLocation(199, 620);
+            usuarios.setLocation(199, 720);
+            senha.setLocation(190, 824);
             btn.setLocation(417,824);
             btn.setText(">");
 
@@ -50,13 +46,13 @@ public class TelaPedido {
             });
 
             btn.setSize(60, 50);
-            confirmaSenha.setSize(215, 50);
+            senha.setSize(215, 50);
             panel.add(background);
             telaP.add(nomeRestaurante);
             telaP.add(mensagem);
-            telaP.add(confirmaSenha);
             telaP.add(senha);
-            telaP.add(cnpj);
+            telaP.add(usuarios);
+            telaP.add(lanches);
             telaP.add(btn);
             telaP.add(panel);
             telaP.setVisible(true);

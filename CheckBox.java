@@ -1,80 +1,64 @@
 package org.example;
 
 import javax.swing.*;
-import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CheckBox extends JPanel {
 
-     JComboBox petList;
-
+     JComboBox<String> selecao;
+    int opcao;
     FuncaoBanco db;
-    CheckBox() {
 
-       
+    public int getOpcao() {
+        return opcao;
+    }
+
+    CheckBox(int opcao) throws SQLException {
+        this.opcao = opcao;
+        checkBoxes(getOpcao());
         setSize(270, 55);
-        add(petList);
+        add(selecao);
+
 
     }
-    public void CheckBoxRestaurante() throws SQLException {
+    public void checkBoxes(int opcao) throws SQLException {
         db = new FuncaoBanco();
+        ArrayList<String> lista = new ArrayList<>();
 
-        ArrayList<String> restaurantes = new ArrayList<>();
-        restaurantes.add("Restaurantes");
+        String [] arraylistToList;
+        switch (opcao){
+            case 1:
+                lista.add("Restaurantes");
+                db.selecionar(2,lista, false);
+                break;
+            case 2:
+                lista.add("Lanches");
+                db.selecionar(4,lista, false);
+                break;
+            case 3:
+                lista.add("Usuários");
+                db.selecionar(1,lista, false);
+                break;
+            default:
+                break;
+        }
 
-        db.selecionar(2,restaurantes);
-        String [] restaurante = new String[restaurantes.size()];
-
+        arraylistToList = new String[lista.size()];
         int i = 0;
-        for (String e:restaurantes) {
-
-            restaurante[i] = e;
+        for (String e:lista) {
+            System.out.println(e);
+            arraylistToList[i] = e;
             i++;
         }
-        petList = new JComboBox(restaurante);
-        petList.setSelectedIndex(0);
-    }
-    public void CheckBoxUsuario() throws SQLException {
-        db = new FuncaoBanco();
+        selecao = new JComboBox<>(arraylistToList);
+        selecao.setSelectedIndex(0);
 
-        ArrayList<String> restaurantes = new ArrayList<>();
-        restaurantes.add("Usuários");
-
-        db.selecionar(2,restaurantes);
-        String [] restaurante = new String[restaurantes.size()];
-
-        int i = 0;
-        for (String e:restaurantes) {
-
-            restaurante[i] = e;
-            i++;
-        }
-        petList = new JComboBox(restaurante);
-        petList.setSelectedIndex(0);
-    }
-    public void CheckBoxLanche() throws SQLException {
-        db = new FuncaoBanco();
-
-        ArrayList<String> restaurantes = new ArrayList<>();
-        restaurantes.add("Lanches");
-
-        db.selecionar(2,restaurantes);
-        String [] restaurante = new String[restaurantes.size()];
-
-        int i = 0;
-        for (String e:restaurantes) {
-
-            restaurante[i] = e;
-            i++;
-        }
-        petList = new JComboBox(restaurante);
-        petList.setSelectedIndex(0);
     }
 
     public static void main(String[] args) throws SQLException{
         Tela t = new Tela();
-        t.add(new CheckBox());
+        t.add(new CheckBox(1));
         t.setVisible(true);
     }
 }
