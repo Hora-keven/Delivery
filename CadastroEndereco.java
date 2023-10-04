@@ -32,10 +32,11 @@ public class CadastroEndereco {
     CadastroEndereco(String nome, int opcao){
         String casa = " /home/keven/Documentos/Delivery/Images/CadastroEndereco.png";
         String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/CadastroEndereco.png";
+        String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\CadastroEndereco.png";
         this.nome = nome;
         this.opcao = opcao;
       
-        background.setIcon(new ImageIcon(senai));
+        background.setIcon(new ImageIcon(bosch));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 

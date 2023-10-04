@@ -42,7 +42,8 @@ public class TelaCadastroUsuario{
 
         String casa = "/home/keven/Documentos/Delivery/Images/telaPrincipal.png";
         String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/telaPrincipal.png";
-        background.setIcon(new ImageIcon(senai));
+         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaPrincipal.png";
+        background.setIcon(new ImageIcon(bosch));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 

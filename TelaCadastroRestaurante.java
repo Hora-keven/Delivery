@@ -40,10 +40,11 @@ public class TelaCadastroRestaurante {
 
         String casa = "/home/keven/Documentos/Delivery/Images/telaPrincipal.png";
         String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/telaRestaurante.png";
+        String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaRestaurante.png";
         mensagem.setSize(350, 100);
         mensagem.setLocation(180,420);
         mensagem.setForeground(Color.WHITE);
-        background.setIcon(new ImageIcon(senai));
+        background.setIcon(new ImageIcon(bosch));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 
