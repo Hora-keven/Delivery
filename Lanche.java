@@ -1,5 +1,5 @@
 
-package org.example;
+// package org.example;
 public class Lanche {
     String nome;
     String preco;

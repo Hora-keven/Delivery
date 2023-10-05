@@ -1,4 +1,4 @@
-package org.example;
+// package org.example;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,18 +9,21 @@ import java.util.ArrayList;
 
 public class TelaPedido {
 
-        int id;
         JPasswordField senha = new JPasswordField();
-        CheckBox lanches ;
-        CheckBox restaurantes = new CheckBox(1, 0);
-        CheckBox usuarios = new CheckBox(3, 0);
+        CheckBox restaurantes = new CheckBox(2);
+     
+       
+        CheckBox usuarios = new CheckBox(1);
         Pedidos pedido;
-
+       
+        CheckBox lanches;
+        
         public String getSenha() {
             return senha.getText();
         }
 
         FuncaoBanco db;
+        String selecionado;
 
         Tela telaP = new Tela();
         Panel panel = new Panel();
@@ -29,20 +32,23 @@ public class TelaPedido {
 
 
         TelaPedido() throws SQLException {
-            id = restaurantes.getId();
-            System.out.println("aaaa");
-            System.out.println(id);
-            lanches = new CheckBox(4, id) ;
+         
+            
+            usuarios.setOpaque(false);
+            restaurantes.setOpaque(false);
+
             Label background = new Label();
             String casa = "/home/keven/Documentos/Delivery/Images/TelaPedido.png";
             String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/TelaPedido.png";
             String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaPedido.png";
-            background.setIcon(new ImageIcon(senai));
+            String bosch2 = "projects/logging/src/main/java/Images/TelaPedido.png";
+
+            background.setIcon(new ImageIcon(bosch2));
             background.setSize(650, 1000);
             background.setLocation(0, 0);
 
             restaurantes.setLocation(199, 522);
-            lanches.setLocation(199, 620);
+          
             usuarios.setLocation(199, 720);
             senha.setLocation(190, 824);
             btn.setLocation(417,824);
@@ -53,7 +59,25 @@ public class TelaPedido {
                 public void actionPerformed( ActionEvent evt) {
                         try {
                             inserirPedido();
+                            ArrayList<String> cardapio = new ArrayList<String>();
+                            db.selecionarFk(1, cardapio, 1);
+                        
+                            String [] cardapioRestauranteId = new String[cardapio.size()];
+                        
+                            int index =0;
+                            for (String c : cardapio) {
+                                cardapioRestauranteId[index] = c;
+                                index++;
+                            }
 
+                            lanches = new CheckBox(cardapioRestauranteId);
+                            lanches.setLocation(199, 620);
+                            lanches.setOpaque(false);
+                            telaP.add(lanches);
+            
+                            System.out.println(lanches.getClicado()+" aaaa");
+                            
+                            mensagem.setText("Clique no retangulo o lanche");
                         } catch (SQLException e) {
                        
                             e.printStackTrace();
@@ -62,38 +86,37 @@ public class TelaPedido {
 
                 }
             });
-
+            
             btn.setSize(60, 50);
             senha.setSize(215, 50);
-            panel.add(background);
+          
             telaP.add(restaurantes);
-            telaP.add(lanches);
             telaP.add(mensagem);
             telaP.add(senha);
             telaP.add(usuarios);
-
             telaP.add(btn);
-            telaP.add(lanches);
+            panel.add(background);
             telaP.add(panel);
-
+          
             telaP.setVisible(true);
             
         }
     
         public void inserirPedido() throws SQLException{
-
+            System.out.println(restaurantes.getSelecionado());
             db = new FuncaoBanco();
             if(verificaSenha()){
                 int fkU = db.getId(1, usuarios.getSelecionado());
                 int fkR = db.getId(2, restaurantes.getSelecionado());
-                int fkL = db.getId(3,lanches.getSelecionado());
-
+              
+                int fkL = 1;
 
                 ArrayList<String> precos = new ArrayList<String>();
-                db = new FuncaoBanco();
-                db.selecionar(4, precos, false);
+                db.selecionar(1, precos, false);
+
                 String [] arrayToList = new String[precos.size()];
                 Float [] precosFormatados = new Float[precos.size()];
+
                 int i =0;
                 for (String p : precos) {
                     System.out.println(p);
@@ -103,7 +126,7 @@ public class TelaPedido {
                     i++;
                     }
 
-                String preco = Float.toString(precosFormatados[fkL-1]*lanches.getQuantidade());
+                String preco = Float.toString(1);
 
                 pedido = new Pedidos(preco,fkU,fkL,fkR);
                 db.adicionarPedido(pedido);

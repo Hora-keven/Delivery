@@ -1,4 +1,4 @@
-package org.example;
+// package org.example;
 import java.awt.event.*;
 import javax.swing.ImageIcon;
 import java.sql.SQLException;
@@ -33,6 +33,7 @@ public class TelaCadastroEndereco {
         String casa = " /home/keven/Documentos/Delivery/Images/CadastroEndereco.png";
         String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/CadastroEndereco.png";
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\CadastroEndereco.png";
+        String bosch2 = "projects/logging/src/main/java/Images/CadastroEndereco.png";
         this.nome = nome;
         this.opcao = opcao;
       
