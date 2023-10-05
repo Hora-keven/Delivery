@@ -1,4 +1,4 @@
-       
+package org.example;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -44,7 +44,7 @@ public class TelaCadastroRestaurante {
         mensagem.setSize(350, 100);
         mensagem.setLocation(180,420);
         mensagem.setForeground(Color.WHITE);
-        background.setIcon(new ImageIcon(casa));
+        background.setIcon(new ImageIcon(senai));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 
@@ -93,11 +93,11 @@ public class TelaCadastroRestaurante {
         }
     }
     public boolean verificaCnpj(){
-        if(getCnpj().length() < 14 ){
+        if(getCnpj().length() < 18 ){
             mensagem.setText("Faltam alguns digitos");
             return false;
         }
-        else if(getCnpj().length() > 14){
+        else if(getCnpj().length() > 18){
             mensagem.setText("Digitos a mais, digite um CNPJ correto");
             return false;
         }else

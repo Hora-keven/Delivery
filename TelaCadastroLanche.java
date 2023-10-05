@@ -1,5 +1,5 @@
-      
 
+package org.example;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,13 +37,13 @@ public class TelaCadastroLanche {
             String casa = "/home/keven/Documentos/Delivery/Images/TelaLanches.png";
             String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/TelaLanches.png";
             String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaLanches.png";
-            background.setIcon(new ImageIcon(casa));
+            background.setIcon(new ImageIcon(senai));
             background.setSize(650, 1000);
             background.setLocation(0, 0);
 
             nome.setLocation(199, 522);
             preco.setLocation(199, 622);
-            restaurantes = new CheckBox(1);
+            restaurantes = new CheckBox(1,0);
             restaurantes.setLocation(199, 732);
 
             btn.addActionListener(new ActionListener(){

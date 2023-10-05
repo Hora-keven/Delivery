@@ -1,4 +1,4 @@
-
+package org.example;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -29,10 +29,12 @@ public class FuncaoBanco {
     public ArrayList selecionar(int opcao, ArrayList<String> nomes, boolean t) throws SQLException {
 
 
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(1));
+        boolean pegar;
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         String sql = "";
+        String sqlFormatado = "";
 
         switch (opcao) {
             case 1:
@@ -48,6 +50,7 @@ public class FuncaoBanco {
                 break;
             case 4:
                 sql = "Lanche";
+
                 break;
             case 5:
                 sql = "Endereco";
@@ -56,7 +59,7 @@ public class FuncaoBanco {
             default:
                 break;
         }
-        String sqlFormatado = String.format("select * from %s", sql);
+        sqlFormatado = String.format("select * from %s ", sql);
         ResultSet respostaDB = statement.executeQuery(sqlFormatado);
 
 
@@ -72,8 +75,12 @@ public class FuncaoBanco {
                 System.out.println(respostaDB.getInt("id_lanche"));
                 System.out.println(respostaDB.getString("nome"));
                 System.out.println(respostaDB.getString("preço"));
-                
-                nomes.add(respostaDB.getString("nome"));
+                if(t == false){
+                    nomes.add(respostaDB.getString("preço"));
+                    continue;
+
+                } else
+                    nomes.add(respostaDB.getString("nome"));
                 continue;
 
 
@@ -107,15 +114,50 @@ public class FuncaoBanco {
                 continue;
 
             }
+
             return nomes;
         }
+        connection.close();
         return nomes;
     }
+    public ArrayList selecionarFk(int opcao, ArrayList<String> escolha, int fk) throws  SQLException{
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(1));
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+        String sql = "";
+        String sqlFormatado = "";
+        switch (opcao) {
+            case 1:
+                sql = "Lanche where fk_restaurante = "+fk ;
+
+                break;
+            case 2:
+                sql = "Endereco where fk_usuario = "+fk;
+
+                break;
+            case 3:
+                sql = "Endereco where fk_restaurante = "+fk;
+
+                break;
 
 
+            default:
+                break;
+        }
+        sqlFormatado = String.format("select * from %s ", sql);
+        ResultSet respostaDB = statement.executeQuery(sqlFormatado);
+        int i = 0;
+        while (respostaDB.next()){
+            escolha.add(respostaDB.getString("nome"));
+            System.out.println(escolha.get(i));
+            i++;
 
+        }
+
+    return escolha;
+    }
     public int getId(int opcao, String nome) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(1));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         String sql = "";
@@ -128,12 +170,16 @@ public class FuncaoBanco {
                 break;
 
             case 2:
-                sql = "select id_restaurante from Cadastro_restaurante where cnpj = " + nome;
+                sql = String.format("select id_restaurante from Cadastro_restaurante where cnpj ='%s' ", nome);
                 id_escolhido = "id_restaurante";
                 break;
 
             case 3:
                 sql = String.format("select id_lanche from Lanche where nome = '%s'", nome);
+                id_escolhido = "id_lanche";
+                break;
+            case 4:
+                sql = String.format("select nome from Lanche where fk_restaurante = %s", Integer.parseInt(nome));
                 id_escolhido = "id_lanche";
                 break;
       
@@ -144,44 +190,48 @@ public class FuncaoBanco {
 
         int id = respostaDB.getInt(id_escolhido);
         System.out.println(id);
+        connection.close();
         return id;
 
     }
-    public String precoLanche(String nome) throws SQLException{
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
-        Statement statement = connection.createStatement();
-        statement.setQueryTimeout(30);
-        String sql = String.format("select id_lanche from Lanche where nome = '%s'", nome);
-        String preco = "preço";
-        ResultSet respostaDB = statement.executeQuery(sql);
-
-        String precoCOnvertido = respostaDB.getString(preco);
-        System.out.println(precoCOnvertido);
-        return precoCOnvertido;
-    }
+//    public String precoLanche(String nome) throws SQLException{
+//        connection = DriverManager.getConnection("jdbc:sqlite:"+path(1));
+//        Statement statement = connection.createStatement();
+//        statement.setQueryTimeout(30);
+//        String sql = String.format("select id_lanche from Lanche where nome = '%s'", nome);
+//        String preco = "preço";
+//        ResultSet respostaDB = statement.executeQuery(sql);
+//
+//        String precoCOnvertido = respostaDB.getString(preco);
+//        System.out.println(precoCOnvertido);
+//        return precoCOnvertido;
+//    }
 
     public void adicionaRestaurante(Restaurante r) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(1));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         String sql = String.format("INSERT INTO Cadastro_restaurante VALUES (null, '%s', '%s', '%s')", r.getNome(),
                 r.getSenha(), r.getCnpj());
         statement.executeUpdate(sql);
+        connection.close();
 
     }
 
     public void adicionarUsuario(Usuarios u) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(1));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         String sql = String.format("INSERT INTO Cadastra_Usuario VALUES (null, '%s', '%s','%s')", u.getNome(),
                 u.getSenha(), u.getCPF());
         statement.executeUpdate(sql);
+        connection.close();
+
 
     }
 
     public void endereco(Endereco e) throws SQLException {
-
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(1));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         System.out.println(e.getFkR());
@@ -190,25 +240,29 @@ public class FuncaoBanco {
                 e.getFkU(), e.getFkR());
 
         statement.executeUpdate(sql);
+        connection.close();
 
     }
 
     public void adicionarlanche(Lanche l) throws SQLException {
-
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(1));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         String sql = String.format("INSERT INTO Lanche VALUES (null, '%s', '%s', %s)", l.getNome(), l.getPreco(),
                 l.getFk_restaurante());
         statement.executeUpdate(sql);
+        connection.close();
 
     }
 
     public void adicionarPedido(Pedidos p) throws SQLException {
-
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(1));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         String sql = String.format("INSERT INTO Pedido VALUES (null, '%s', %s, %s, %S)", p.getPrecoTotal(), p.getFkU(), p.getFkR(), p.getFkL());
+
         statement.executeUpdate(sql);
+        connection.close();
 
     }
 
@@ -220,8 +274,8 @@ public class FuncaoBanco {
     public static void main(String[] args)throws SQLException {
 
     FuncaoBanco db = new FuncaoBanco();
-
-    db.getId(3,"3")
+        ArrayList<String> precos = new ArrayList<String>();
+    db.selecionarFk(1, precos,2)
     ;
     }
 

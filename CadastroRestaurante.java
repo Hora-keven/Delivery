@@ -1,4 +1,4 @@
-
+package org.example;
 import javax.swing.ImageIcon;
 import java.awt.event.*;
 import java.sql.SQLException;
@@ -36,7 +36,7 @@ public class CadastroRestaurante{
         String casa = "/home/keven/Documentos/Delivery/Images/telaPrincipal.png";
         String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/telaRestaurante.png";
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaRestaurante.png";
-        background.setIcon(new ImageIcon(bosch));
+        background.setIcon(new ImageIcon(senai));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 

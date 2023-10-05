@@ -16,7 +16,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Cadastro_restaurante (
     id_restaurante integer not null primary key,
     nome_restaurante varchar(60),
     senha varchar(60),
-    cnpj varchar(14)
+    cnpj varchar(18)
     
  
   )''')
@@ -33,7 +33,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Endereco (
     FOREIGN KEY(fk_usuario) REFERENCES Endereco(id_endereco)
   )''')
 # cursor.execute('INSERT INTO Cadastra_Usuario VALUES (null,"Keven","12345", "53688621808")')
-
+cursor.execute("DROP TABLE Lanche")
 cursor.execute("""CREATE TABLE IF NOT EXISTS Lanche(
     id_lanche integer not null  primary key,
     nome varchar(100),
@@ -42,7 +42,7 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS Lanche(
     FOREIGN KEY(fk_restaurante) REFERENCES Cadastro_restaurante(id_restaurante)
     )""")
 
-
+cursor.execute("DROP TABLE Pedido")
 cursor.execute("""CREATE TABLE IF NOT EXISTS Pedido(
     id_pedido integer not null  primary key,
     preço_total varchar(60),

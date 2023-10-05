@@ -1,4 +1,4 @@
- 
+package org.example;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,18 +9,17 @@ import java.util.ArrayList;
 
 public class TelaPedido {
 
-
+        int id;
         JPasswordField senha = new JPasswordField();
-        CheckBox lanches  = new CheckBox(2);
-        CheckBox restaurantes = new CheckBox(1);
-        CheckBox usuarios = new CheckBox(3);
+        CheckBox lanches ;
+        CheckBox restaurantes = new CheckBox(1, 0);
+        CheckBox usuarios = new CheckBox(3, 0);
         Pedidos pedido;
 
         public String getSenha() {
             return senha.getText();
         }
 
-        Restaurante restaurante;
         FuncaoBanco db;
 
         Tela telaP = new Tela();
@@ -30,11 +29,15 @@ public class TelaPedido {
 
 
         TelaPedido() throws SQLException {
+            id = restaurantes.getId();
+            System.out.println("aaaa");
+            System.out.println(id);
+            lanches = new CheckBox(4, id) ;
             Label background = new Label();
             String casa = "/home/keven/Documentos/Delivery/Images/TelaPedido.png";
             String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/TelaPedido.png";
             String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaPedido.png";
-            background.setIcon(new ImageIcon(casa));
+            background.setIcon(new ImageIcon(senai));
             background.setSize(650, 1000);
             background.setLocation(0, 0);
 
@@ -50,6 +53,7 @@ public class TelaPedido {
                 public void actionPerformed( ActionEvent evt) {
                         try {
                             inserirPedido();
+
                         } catch (SQLException e) {
                        
                             e.printStackTrace();
@@ -63,33 +67,51 @@ public class TelaPedido {
             senha.setSize(215, 50);
             panel.add(background);
             telaP.add(restaurantes);
+            telaP.add(lanches);
             telaP.add(mensagem);
             telaP.add(senha);
             telaP.add(usuarios);
-            telaP.add(lanches);
+
             telaP.add(btn);
+            telaP.add(lanches);
             telaP.add(panel);
+
             telaP.setVisible(true);
             
         }
     
         public void inserirPedido() throws SQLException{
+
             db = new FuncaoBanco();
-            if(verificaSenha() == true){
+            if(verificaSenha()){
                 int fkU = db.getId(1, usuarios.getSelecionado());
                 int fkR = db.getId(2, restaurantes.getSelecionado());
                 int fkL = db.getId(3,lanches.getSelecionado());
-         
-    
-                String preco = db.precoLanche(lanches.getSelecionado());
-    
+
+
+                ArrayList<String> precos = new ArrayList<String>();
+                db = new FuncaoBanco();
+                db.selecionar(4, precos, false);
+                String [] arrayToList = new String[precos.size()];
+                Float [] precosFormatados = new Float[precos.size()];
+                int i =0;
+                for (String p : precos) {
+                    System.out.println(p);
+                    arrayToList[i] = p;
+
+                    precosFormatados[i] = Float.valueOf(arrayToList[i]);
+                    i++;
+                    }
+
+                String preco = Float.toString(precosFormatados[fkL-1]*lanches.getQuantidade());
+
                 pedido = new Pedidos(preco,fkU,fkL,fkR);
                 db.adicionarPedido(pedido);
             }
            else mensagem.setText("Senha incorreta");
         }
         public boolean verificaSenha() throws SQLException{
-            boolean verifica = true;
+            boolean verifica = false;
             ArrayList<String> senhas = new ArrayList<String>();
             db = new FuncaoBanco();
             db.selecionar(1, senhas, false);
@@ -97,17 +119,16 @@ public class TelaPedido {
             String [] senha = new String[senhas.size()];
             int i =0;
             for (String s : senhas) {
-                System.out.println(s);
                 senha[i]=s;
             
                 if(!getSenha().equals(senha[i])){
                     mensagem.setText("DIgite a senha cadastrada");
-                    verifica = false;
+                    verifica = true;
                     continue;
                    
             }
                 else if(getSenha().equals(senha[i])){
-                    verifica = true;
+                    verifica = false;
                     continue;
                 }
             i++;
