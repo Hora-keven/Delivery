@@ -1,14 +1,13 @@
-package org.example;
-
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public class CheckBox extends JPanel {
 
-     JComboBox<String> selecao;
+    JComboBox<String> selecao;
     int opcao;
     int id;
     FuncaoBanco db;
@@ -40,7 +39,7 @@ public class CheckBox extends JPanel {
 
     public void checkBoxes(int opcao) throws SQLException {
         db = new FuncaoBanco();
-        ArrayList<String> lista = new ArrayList<>();
+        ArrayList<String> lista = new ArrayList<String>();
 
         String [] arraylistToList;
         switch (opcao){
@@ -51,12 +50,12 @@ public class CheckBox extends JPanel {
                 break;
             case 2:
                 lista.add("Lanches");
-                db.selecionar(4,lista, false);
+                db.selecionar(4,lista, true);
                 escolha = 2;
                 break;
             case 3:
                 lista.add("Usuários");
-                db.selecionar(1,lista, false);
+                db.selecionar(1,lista, true);
                 escolha = 3;
                 break;
             default:
@@ -71,22 +70,21 @@ public class CheckBox extends JPanel {
             i++;
         }
 
-        selecao = new JComboBox<>(arraylistToList);
+        selecao = new JComboBox<String>(arraylistToList);
         selecao.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED)
                     selecionado = (String) e.getItem();
-                    System.out.println(e.getItem());
                 try {
                     switch (escolha){
                         case 1:
                             id = db.getId(2, selecionado);
                             break;
                         case 2:
-                            id = db.getId(3, selecionado);
+                            id = db.getId(3, (String)selecionado);
                             break;
                         case 3:
-                            id = db.getId(1, selecionado);
+                            id = db.getId(1, (String)selecionado);
                             break;
                         default:
                             break;
@@ -98,7 +96,6 @@ public class CheckBox extends JPanel {
             }
         });
 
-        System.out.println(id);
         selecao.setSelectedIndex(0);
 
     }

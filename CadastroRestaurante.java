@@ -1,4 +1,4 @@
-package org.example;
+
 import javax.swing.ImageIcon;
 import java.awt.event.*;
 import java.sql.SQLException;

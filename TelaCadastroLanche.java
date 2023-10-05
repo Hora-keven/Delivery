@@ -1,4 +1,4 @@
-package org.example;
+      
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -34,10 +34,10 @@ public class TelaCadastroLanche {
             mensagem.setSize(350, 100);
             mensagem.setLocation(300,420);
 
-            String casa = "/home/keven/Documentos/Delivery/Images/telaPrincipal.png";
+            String casa = "/home/keven/Documentos/Delivery/Images/TelaLanches.png";
             String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/TelaLanches.png";
             String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaLanches.png";
-            background.setIcon(new ImageIcon(bosch));
+            background.setIcon(new ImageIcon(casa));
             background.setSize(650, 1000);
             background.setLocation(0, 0);
 
@@ -74,7 +74,7 @@ public class TelaCadastroLanche {
 
                 if(verificaPreco()==true){
 
-                    lanche = new Lanche(getNome(), getPreco(),id);
+                    lanche = new Lanche(getNome(), getPreco(), id);
                     db.adicionarlanche(lanche);
                 }
 

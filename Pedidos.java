@@ -1,18 +1,23 @@
 
-package org.example;
+
 public class Pedidos {
    
-        String nomeUsuario;
-        String nomeRestaurante;
-        String lanche;
+        public String getPrecoTotal() {
+        return precoTotal;
+    }
+
+    public void setPrecoTotal(String precoTotal) {
+        this.precoTotal = precoTotal;
+    }
+
+        String precoTotal;
+ 
         int fkU;
         int fkR;
         int fkL;
     
-        Pedidos(String usuario, String restaurante, String lanche, int fkU, int fkR, int fkL){
-            this.nomeUsuario = usuario;
-            this.nomeRestaurante = restaurante;
-            this.lanche = lanche;
+        Pedidos(String preco,int fkU, int fkR, int fkL){
+            this.precoTotal = preco;
             this.fkU = fkU;
             this.fkR = fkR;
             this.fkL=fkL;
@@ -30,16 +35,6 @@ public class Pedidos {
             return fkL;
         }
 
-        public String getNomeUsuario() {
-            return nomeUsuario;
-        }
 
-        public String getNomeRestaurante() {
-            return nomeRestaurante;
-        }
-
-        public String getLanche() {
-            return lanche;
-        }
-    
+     
 }
