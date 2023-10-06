@@ -1,4 +1,4 @@
-// package org.example;
+ package org.example;
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -36,6 +36,15 @@ public class CheckBox extends JPanel {
     public int getQuantidade() {
         return quantidade;
     }
+    String[] vazio;
+
+    public String[] getVazio() {
+        return vazio;
+    }
+
+    public void setVazio(String[] vazio) {
+        this.vazio = vazio;
+    }
 
     String selecionado;
 
@@ -66,9 +75,18 @@ public class CheckBox extends JPanel {
         especifico();
 
         setSize(270, 55);
-        add(selecao);
+        add(selecaoLanche);
     }
-  
+      CheckBox(){
+
+
+        vazio = new String[10];
+
+        selecao = new JComboBox<String>(vazio);
+
+        setSize(270, 55);
+        add(selecao);
+      }
 
     public void checkBoxes(int opcao) throws SQLException {
         db = new FuncaoBanco();
@@ -78,7 +96,7 @@ public class CheckBox extends JPanel {
         switch (opcao){
             case 1:
                 lista.add("Usuarios");
-                db.selecionar(1,lista, false);
+                db.selecionar(1,lista, true);
                 escolha = 1;
                 break;
             case 2:
@@ -112,19 +130,16 @@ public class CheckBox extends JPanel {
                 try {
                     switch (escolha){
                         case 1:
-                            id = db.getId(1, selecionado);
-                           
+                            id = db.getById(1, selecionado);
                             break;
 
                         case 2:
-                            id = db.getId(2, selecionado);
+                            id = db.getById(2, selecionado);
                             break;
                         case 3:
-                         
-                            id = db.getId(3, selecionado);
+                            id = db.getById(3, selecionado);
                             quantidade++;
                             break;
-                     
                         default:
                             break;
                     }
@@ -142,23 +157,34 @@ public class CheckBox extends JPanel {
 
    
     public String especifico(){
-        especifico[0]="Lanches";
-        selecaoLanche =  new JComboBox<String>(especifico);
+
         contador++;
-     
-        clicado = selecaoLanche.getSelectedItem().toString(); 
-       
-        
-        selecao.addItemListener(new ItemListener() {
+        selecaoLanche = new JComboBox<String>(especifico);
+        clicado = selecaoLanche.getSelectedItem().toString();
+        db = new FuncaoBanco();
+        selecaoLanche.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED){
-                        clicado =(String) e.getItem();
-                            
+                        clicado = e.getItem().toString();
+                    try {
+                        if (contador == 1) {
+                            id = db.getById(3, clicado);
+                            clicado = db.selecionarPorNome( id,"id_lanche", "Lanche");
+                            System.out.println(clicado);
+                            quantidade++;
+
+
+                        }
+
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+
+                }
             }
-        }
         });
         
-          
+
         return clicado;
     }
 
@@ -167,9 +193,10 @@ public class CheckBox extends JPanel {
        
         
         String[] cardapioRestauranteId = new String[2];
-        cardapioRestauranteId[0]="keven";
-        cardapioRestauranteId[1]="maria";       
+        cardapioRestauranteId[0]="X-Burguer";
+        cardapioRestauranteId[1]="X-salada";
         CheckBox c = new CheckBox(cardapioRestauranteId);
+
        
         t.add(c);
         t.setVisible(true);

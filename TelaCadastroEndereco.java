@@ -1,4 +1,4 @@
-// package org.example;
+package org.example;
 import java.awt.event.*;
 import javax.swing.ImageIcon;
 import java.sql.SQLException;
@@ -76,13 +76,13 @@ public class TelaCadastroEndereco {
             int id;
             switch (getOpcao()){
                case 1:
-                   id = db.getId(getOpcao(), formato);
+                   id = db.getById(getOpcao(), formato);
                    endereco = new Endereco(eixoX, eixoY);
                    endereco.setFkU(id);
                    db.endereco(endereco);
                    break;
                 case 2:
-                    id = db.getId(getOpcao(), formato);
+                    id = db.getById(getOpcao(), formato);
                     endereco = new Endereco(eixoX, eixoY, id);
                     db.endereco(endereco);
                     break;

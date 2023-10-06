@@ -1,5 +1,5 @@
 
-// package org.example;
+package org.example;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,7 +38,7 @@ public class TelaCadastroLanche {
             String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/TelaLanches.png";
             String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaLanches.png";
             String bosch2 = "projects/logging/src/main/java/Images/TelaLanches.png";
-            background.setIcon(new ImageIcon(bosch));
+            background.setIcon(new ImageIcon(senai));
             background.setSize(650, 1000);
             background.setLocation(0, 0);
 
