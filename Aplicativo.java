@@ -1,61 +1,28 @@
-// import java.sql.Connection;
-// import java.sql.DriverManager;
-// import java.sql.SQLException;
 
-// public class Aplicativo {
-//     Connection connection = null;
-//     FuncaoBanco db;
-//     TelaPrincipal tela;
+import javax.swing.ImageIcon;
+
+
+
+public class Aplicativo extends Tela {
+    Label background = new Label();
     
-    // public void cadastrarRestaurante(Restaurante r, Endereco ed) throws SQLException {
-      
-    //     connection = DriverManager.getConnection("jdbc:sqlite:/home/keven/Documentos/Delivery/Aplicativo.db");
-    //     try {
-           
-    //         db.adicionar_restaurante(r);
-    //         db.endereco(ed);
+    Aplicativo(){
+        String casa = "/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/telaPrincipal.png";
+        String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/telaPrincipal.png";
+        String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaPrincipal.png";
+        String bosch2 = "projects/logging/src/main/java/Images/telaPrincipal.png";
 
-    //     } catch (SQLException e) {
-    //         System.err.println(e.getMessage());
-    //     } finally {
-    //         try {
-    //             if (connection != null)
-    //                 connection.close();
-    //         } catch (SQLException e) {
+        background.setIcon(new ImageIcon(casa));
+        background.setSize(650, 1000);
+        background.setLocation(0, 0);
 
-    //             System.err.println(e.getMessage());
-    //         }
-    //     }
+
+      add(background);
+      setVisible(true);
+    }
+      public static void main(String[] args) {
+        new Aplicativo();
+      }
     
-    // }
 
-    // public void cadastrarUsuario() throws SQLException{
-
-    //     try{
-         
-    //         Usuarios usuario = new Usuarios(tela.getNomeUsuario(),tela.getSenha(), tela.getCpf());
-     
-    //         db.adicionar_usuario(usuario);
-    //     } catch (SQLException e) {
-    //         System.err.println(e.getMessage());
-    //     } finally {
-    //         try {
-    //             if (connection != null)
-    //                 connection.close();
-    //         } catch (SQLException e) {
-
-    //             System.err.println(e.getMessage());
-    //         }
-    //     }
-    
-      
-       
-//     }
-
-//     public void getRestaurantes() throws SQLException{
-//       db.selecionar(0);
-//     }
-  
- 
-
-// }
+}

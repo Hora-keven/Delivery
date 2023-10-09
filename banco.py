@@ -37,7 +37,7 @@ cursor.execute("DROP TABLE Lanche")
 cursor.execute("""CREATE TABLE IF NOT EXISTS Lanche(
     id_lanche integer not null  primary key,
     nome varchar(100),
-    preço varchar(60),
+    preço FLOAT,
     fk_restaurante integer,
     FOREIGN KEY(fk_restaurante) REFERENCES Cadastro_restaurante(id_restaurante)
     )""")
@@ -45,7 +45,7 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS Lanche(
 cursor.execute("DROP TABLE Pedido")
 cursor.execute("""CREATE TABLE IF NOT EXISTS Pedido(
     id_pedido integer not null  primary key,
-    preço_total varchar(60),
+    preço_total FLOAT,
     fk_usuario integer,
     fk_restaurante integer,
     fk_lanche integer,

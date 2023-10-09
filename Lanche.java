@@ -1,16 +1,16 @@
 
-package org.example;
+// package org.example;
 public class Lanche {
     String nome;
-    String preco;
+    float preco;
     int fk_restaurante;
 
-    public Lanche(String nome, String preco, int fk_restaurante) {
+    public Lanche(String nome, float preco, int fk_restaurante) {
         this.nome = nome;
         this.preco = preco;
         this.fk_restaurante = fk_restaurante;
     }
-    public Lanche(String nome, String preco) {
+    public Lanche(String nome, float preco) {
         this.nome = nome;
         this.preco = preco;
 
@@ -21,7 +21,7 @@ public class Lanche {
         return nome;
     }
 
-    public String getPreco() {
+    public float getPreco() {
         return preco;
     }
 

@@ -1,5 +1,5 @@
 
-package org.example;
+// package org.example;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +15,10 @@ public class TelaCadastroLanche {
         return preco.getText();
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getNome() {
         return nome.getText();
     }
@@ -27,31 +31,32 @@ public class TelaCadastroLanche {
     Tela telaP = new Tela();
     Label background = new Label();
     FuncaoBanco db;
+    int id;
 
-    TelaCadastroLanche() throws SQLException{
+    TelaCadastroLanche(int id) throws SQLException{
 
-
+            this.id = id;
             mensagem.setSize(350, 100);
             mensagem.setLocation(300,420);
 
-            String casa = "/home/keven/Documentos/Delivery/Images/TelaLanches.png";
-            String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/TelaLanches.png";
-            String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaLanches.png";
+            String casa = "/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/TelaLanche.png";
+            String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/TelaLanche.png";
+            String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaLanche.png";
             String bosch2 = "projects/logging/src/main/java/Images/TelaLanches.png";
-            background.setIcon(new ImageIcon(senai));
+            background.setIcon(new ImageIcon(casa));
             background.setSize(650, 1000);
             background.setLocation(0, 0);
 
             nome.setLocation(199, 522);
-            preco.setLocation(199, 622);
-            restaurantes = new CheckBox(1);
-            restaurantes.setLocation(199, 732);
+            preco.setLocation(199, 590);
+     
 
             btn.addActionListener(new ActionListener(){
                 public void actionPerformed( ActionEvent evt) {
 
                         try {
-                            inserindoLanche(restaurantes.getId());
+                         
+                            inserindoLanche();
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
@@ -59,23 +64,24 @@ public class TelaCadastroLanche {
                     }
             });
 
-            btn.setSize(270, 50);
-            btn.setLocation(199,808);
+            btn.setSize(150, 50);
+            btn.setLocation(249,673);
 
             telaP.add(nome);
             telaP.add(mensagem);
-            telaP.add(restaurantes);
+          
             telaP.add(preco);
             telaP.add(btn);
             telaP.add(background);
             telaP.setVisible(true);
         }
-            public void inserindoLanche(int id) throws SQLException{
+            public void inserindoLanche() throws SQLException{
                 db = new FuncaoBanco();
-
+              
                 if(verificaPreco()==true){
-
-                    lanche = new Lanche(getNome(), getPreco(), id);
+                    float preco = Float.parseFloat(getPreco());
+                 
+                    lanche = new Lanche(getNome(), preco, getId());
                     db.adicionarlanche(lanche);
                 }
 
@@ -90,7 +96,7 @@ public class TelaCadastroLanche {
             }
 
             public static void main(String[] args) throws SQLException {
-                new TelaCadastroLanche();
+                new TelaCadastroLanche(0);
             }
         }
 

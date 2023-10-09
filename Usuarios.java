@@ -1,5 +1,5 @@
 
-package org.example;
+// package org.example;
  
 public class Usuarios {
 
@@ -12,7 +12,6 @@ public class Usuarios {
                 this.senha = senha;
                 this.CPF = CPF;
         }
-
 
         public String getNome() {
                 return nome;

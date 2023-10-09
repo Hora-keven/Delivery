@@ -1,22 +1,22 @@
-package org.example;
+// package org.example;
 
 public class Pedidos {
    
-        public String getPrecoTotal() {
+        public float getPrecoTotal() {
         return precoTotal;
     }
 
-    public void setPrecoTotal(String precoTotal) {
+    public void setPrecoTotal(float precoTotal) {
         this.precoTotal = precoTotal;
     }
 
-        String precoTotal;
+        float precoTotal;
  
         int fkU;
         int fkR;
         int fkL;
     
-        Pedidos(String preco,int fkU, int fkR, int fkL){
+        Pedidos(float preco,int fkU, int fkR, int fkL){
             this.precoTotal = preco;
             this.fkU = fkU;
             this.fkR = fkR;

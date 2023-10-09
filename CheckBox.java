@@ -1,4 +1,4 @@
- package org.example;
+//  package org.example;
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -37,6 +37,10 @@ public class CheckBox extends JPanel {
         return quantidade;
     }
     String[] vazio;
+
+    public void setSelecionado(String selecionado) {
+        this.selecionado = selecionado;
+    }
 
     public String[] getVazio() {
         return vazio;
@@ -88,7 +92,7 @@ public class CheckBox extends JPanel {
         add(selecao);
       }
 
-    public void checkBoxes(int opcao) throws SQLException {
+    public String checkBoxes(int opcao) throws SQLException {
         db = new FuncaoBanco();
         ArrayList<String> lista = new ArrayList<String>();
 
@@ -152,11 +156,14 @@ public class CheckBox extends JPanel {
         });
         
         selecao.setSelectedIndex(0);
+
+        return selecionado;
        
     }
 
    
     public String especifico(){
+     
 
         contador++;
         selecaoLanche = new JComboBox<String>(especifico);
@@ -166,16 +173,14 @@ public class CheckBox extends JPanel {
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED){
                         clicado = e.getItem().toString();
+                        quantidade++;
                     try {
-                        if (contador == 1) {
-                            id = db.getById(3, clicado);
-                            clicado = db.selecionarPorNome( id,"id_lanche", "Lanche");
-                            System.out.println(clicado);
-                            quantidade++;
-
-
-                        }
-
+                     
+                        id = db.getById(3, clicado);
+                        clicado = db.selecionarPorNome( id,"id_lanche", "Lanche");
+                        System.out.println(clicado);
+                     
+                        
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -183,15 +188,19 @@ public class CheckBox extends JPanel {
                 }
             }
         });
-        
+       
 
         return clicado;
+    }
+    public void apagarLista(){
+        selecaoLanche.removeAllItems();
+        selecaoLanche.setEnabled(true);
+        selecionado = "";
+    
     }
 
     public static void main(String[] args) throws SQLException{
         Tela t = new Tela();
-       
-        
         String[] cardapioRestauranteId = new String[2];
         cardapioRestauranteId[0]="X-Burguer";
         cardapioRestauranteId[1]="X-salada";

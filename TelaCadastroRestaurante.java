@@ -1,4 +1,4 @@
-package org.example;
+// package org.example;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -38,7 +38,7 @@ public class TelaCadastroRestaurante {
 
     TelaCadastroRestaurante() throws SQLException{
 
-        String casa = "/home/keven/Documentos/Delivery/Images/telaPrincipal.png";
+        String casa = "/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/telaRestaurante.png";
         String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/telaRestaurante.png";
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaRestaurante.png";
         String bosch2 = "projects/logging/src/main/java/Images/telaRestaurante.png";
@@ -46,7 +46,7 @@ public class TelaCadastroRestaurante {
         mensagem.setSize(350, 100);
         mensagem.setLocation(180,420);
         mensagem.setForeground(Color.WHITE);
-        background.setIcon(new ImageIcon(senai));
+        background.setIcon(new ImageIcon(casa));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 

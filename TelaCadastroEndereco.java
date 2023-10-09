@@ -1,4 +1,4 @@
-package org.example;
+// package org.example;
 import java.awt.event.*;
 import javax.swing.ImageIcon;
 import java.sql.SQLException;
@@ -13,7 +13,8 @@ public class TelaCadastroEndereco {
     FuncaoBanco db;
     Endereco endereco;
     String nome;
-
+    int id;
+    
     public String getNome(){
         return nome;
     }
@@ -30,14 +31,14 @@ public class TelaCadastroEndereco {
     }
 
     TelaCadastroEndereco(String nome, int opcao){
-        String casa = " /home/keven/Documentos/Delivery/Images/CadastroEndereco.png";
+        String casa = " /home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/CadastroEndereco.pngg";
         String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/CadastroEndereco.png";
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\CadastroEndereco.png";
         String bosch2 = "projects/logging/src/main/java/Images/CadastroEndereco.png";
         this.nome = nome;
         this.opcao = opcao;
       
-        background.setIcon(new ImageIcon(senai));
+        background.setIcon(new ImageIcon(casa));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 
@@ -53,6 +54,10 @@ public class TelaCadastroEndereco {
                 
                 try {
                     inserindoEndereco(getNome());
+                    if(getNome().length() == 18){
+                        new TelaCadastroLanche(id);
+                    }
+                    else new TelaPedido(getNome());
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -73,7 +78,7 @@ public class TelaCadastroEndereco {
             int eixoX = Integer.parseInt(getEixoX());
             int eixoY = Integer.parseInt(getEixoY());
 
-            int id;
+          
             switch (getOpcao()){
                case 1:
                    id = db.getById(getOpcao(), formato);
