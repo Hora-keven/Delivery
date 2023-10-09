@@ -1,4 +1,4 @@
-// package org.example;
+package org.example;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -44,7 +44,7 @@ public class TelaPedido {
             String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaedido.png";
             String bosch2 = "projects/logging/src/main/java/Images/telaedido.png";
 
-            background.setIcon(new ImageIcon(casa));
+            background.setIcon(new ImageIcon(bosch));
             background.setSize(650, 1000);
             background.setLocation(0, 0);
             restaurantes.setLocation(170, 522);

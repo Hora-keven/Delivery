@@ -1,5 +1,5 @@
 
-// package org.example;
+package org.example;
 import javax.swing.JButton;
 
 
