@@ -1,4 +1,4 @@
-package org.example;
+// package org.example;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -29,7 +29,7 @@ public class FuncaoBanco {
         return "";
     }
     public int quantidadeRow(String tabela) throws SQLException{
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(3));
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
 
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
@@ -43,7 +43,7 @@ public class FuncaoBanco {
     public ArrayList selecionar(int opcao, ArrayList<String> nomes, boolean t) throws SQLException {
 
 
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(3));
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
   
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
@@ -112,7 +112,7 @@ public class FuncaoBanco {
                     nomes.add(respostaDB.getString("senha"));
                     continue;
                 }
-                else  nomes.add(respostaDB.getString("cpf"));
+                else nomes.add(respostaDB.getString("cpf"));
                 continue;
 
             }  if (sql.equals("Cadastro_restaurante")) {
@@ -132,7 +132,7 @@ public class FuncaoBanco {
         return nomes;
     }
     public String selecionarPorNome(int id, String nome_id, String tabela) throws  SQLException{
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(3));
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         String sql = String.format("select * from %s where %s = %s", tabela, nome_id, id);
@@ -142,7 +142,7 @@ public class FuncaoBanco {
         return nome;
     }
     public ArrayList selecionarFk(int opcao, ArrayList<String> escolha, int fk) throws  SQLException{
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(3));
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         String sql = "";
@@ -174,8 +174,8 @@ public class FuncaoBanco {
 
     return escolha;
     }
-    public int getById(int opcao, String nome) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(3));
+    public int selecionarPorId(int opcao, String nome) throws SQLException {
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         String sql = "";
@@ -229,7 +229,7 @@ public class FuncaoBanco {
 //    }
 
     public void adicionaRestaurante(Restaurante r) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(3));
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         String sql = String.format("INSERT INTO Cadastro_restaurante VALUES (null, '%s', '%s', '%s')", r.getNome(),
@@ -240,7 +240,7 @@ public class FuncaoBanco {
     }
 
     public void adicionarUsuario(Usuarios u) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(3));
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         String sql = String.format("INSERT INTO Cadastra_Usuario VALUES (null, '%s', '%s','%s')", u.getNome(),
@@ -252,7 +252,7 @@ public class FuncaoBanco {
     }
 
     public void endereco(Endereco e) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(3));
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         System.out.println(e.getFkR());
@@ -266,7 +266,7 @@ public class FuncaoBanco {
     }
 
     public void adicionarlanche(Lanche l) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(3));
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         String sql = String.format("INSERT INTO Lanche VALUES (null, '%s', %s, %s)", l.getNome(), l.getPreco(), l.getFk_restaurante());
@@ -275,21 +275,21 @@ public class FuncaoBanco {
 
     }
     public void adicionarPedido(Pedidos p) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(3));
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
-        String sql = String.format("INSERT INTO Pedido VALUES (null, %f, %s, %s, %s)", p.getPrecoTotal(), p.getFkU(), p.getFkR(), p.getFkL());
+        String sql = String.format("INSERT INTO Pedido VALUES (null, %s, %s, %s, %s)", p.getPrecoTotal(), p.getFkU(), p.getFkR(), p.getFkL());
         statement.executeUpdate(sql);
         connection.close();
 
     }
     public float selecionarPreco(int id) throws SQLException{
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path(3));
+        connection = DriverManager.getConnection("jdbc:sqlite:"+path(2));
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
-        String sql = String.format("select * from Lanche where id_lanche = %d",id);
+        String sql = String.format("select * from Lanche where id_lanche = %s",id);
         ResultSet respostaDB = statement.executeQuery(sql);
-        float nome = respostaDB.getFloat("preço");
+        float nome = respostaDB.getInt("preço");
         connection.close();
         return nome;
     }
@@ -307,7 +307,7 @@ public class FuncaoBanco {
         for (int i = 0; i < precos.size(); i++) {
            System.out.println( precos.get(i));
         }
-        db.getById(2, "96.219.876/0001-00");
+        db.selecionarPorId(2, "96.219.876/0001-00");
 
     ;
     }

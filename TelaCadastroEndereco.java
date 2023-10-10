@@ -1,11 +1,11 @@
-package org.example;
+// package org.example;
 import java.awt.event.*;
 import javax.swing.ImageIcon;
 import java.sql.SQLException;
 
 public class TelaCadastroEndereco {
     Input eixoX = new Input();
-    Tela telaP = new Tela();
+    Tela tela = new Tela();
     Panel panel = new Panel();
     Button btn = new Button();
     Label background = new Label();
@@ -31,10 +31,11 @@ public class TelaCadastroEndereco {
     }
 
     TelaCadastroEndereco(String nome, int opcao){
-        String casa = " /home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/CadastroEndereco.pngg";
+        String casa = "/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/CadastroEndereco.png";
         String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/CadastroEndereco.png";
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\CadastroEndereco.png";
         String bosch2 = "projects/logging/src/main/java/Images/CadastroEndereco.png";
+        
         this.nome = nome;
         this.opcao = opcao;
       
@@ -58,19 +59,20 @@ public class TelaCadastroEndereco {
                         new TelaCadastroLanche(id);
                     }
                     else new TelaPedido(getNome());
+                    
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-              
+                tela.dispose();
                
             }
         });
         panel.add(background);
-        telaP.add(eixoX);
-        telaP.add(eixoY);
-        telaP.add(btn);
-        telaP.add(panel);
-        telaP.setVisible(true);
+        tela.add(eixoX);
+        tela.add(eixoY);
+        tela.add(btn);
+        tela.add(panel);
+        tela.setVisible(true);
     }
     public void inserindoEndereco(String formato) throws SQLException{
         db = new FuncaoBanco();
@@ -81,13 +83,13 @@ public class TelaCadastroEndereco {
           
             switch (getOpcao()){
                case 1:
-                   id = db.getById(getOpcao(), formato);
+                   id = db.selecionarPorId(getOpcao(), formato);
                    endereco = new Endereco(eixoX, eixoY);
                    endereco.setFkU(id);
                    db.endereco(endereco);
                    break;
                 case 2:
-                    id = db.getById(getOpcao(), formato);
+                    id = db.selecionarPorId(getOpcao(), formato);
                     endereco = new Endereco(eixoX, eixoY, id);
                     db.endereco(endereco);
                     break;

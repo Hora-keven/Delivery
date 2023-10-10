@@ -1,5 +1,5 @@
 
-package org.example;
+// package org.example;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +28,7 @@ public class TelaCadastroLanche {
     CheckBox restaurantes ;
     Lanche lanche;
     Label mensagem = new Label();
-    Tela telaP = new Tela();
+    Tela tela = new Tela();
     Label background = new Label();
     FuncaoBanco db;
     int id;
@@ -43,7 +43,7 @@ public class TelaCadastroLanche {
             String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/TelaLanche.png";
             String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaLanche.png";
             String bosch2 = "projects/logging/src/main/java/Images/TelaLanches.png";
-            background.setIcon(new ImageIcon(bosch));
+            background.setIcon(new ImageIcon(casa));
             background.setSize(650, 1000);
             background.setLocation(0, 0);
 
@@ -67,13 +67,13 @@ public class TelaCadastroLanche {
             btn.setSize(150, 50);
             btn.setLocation(249,673);
 
-            telaP.add(nome);
-            telaP.add(mensagem);
+            tela.add(nome);
+            tela.add(mensagem);
           
-            telaP.add(preco);
-            telaP.add(btn);
-            telaP.add(background);
-            telaP.setVisible(true);
+            tela.add(preco);
+            tela.add(btn);
+            tela.add(background);
+            tela.setVisible(true);
         }
             public void inserindoLanche() throws SQLException{
                 db = new FuncaoBanco();
@@ -83,6 +83,7 @@ public class TelaCadastroLanche {
                  
                     lanche = new Lanche(getNome(), preco, getId());
                     db.adicionarlanche(lanche);
+                    tela.dispose();
                 }
 
             }

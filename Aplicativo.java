@@ -1,12 +1,17 @@
-package org.example;
+// package org.example;
 
 import javax.swing.ImageIcon;
+
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.awt.event.*;
+
 
 public class Aplicativo extends Tela {
   Label background = new Label();
   Button btnCadastroUsuario = new Button();
   Button btnCadastroRestaurante = new Button();
+  Button btnLogar = new Button();
 
 
   Aplicativo() {
@@ -19,32 +24,57 @@ public class Aplicativo extends Tela {
     btnCadastroRestaurante.setLocation(190,600);
     btnCadastroUsuario.setSize(270, 50);
     btnCadastroUsuario.setLocation(190,720);
+    btnLogar.setLocation(190,840);
+    btnLogar.setSize(270, 50);
 
-    background.setIcon(new ImageIcon(senai));
+    background.setIcon(new ImageIcon(casa));
     background.setSize(650, 1000);
     background.setLocation(0, 0);
 
-    btnCadastroUsuario.setText("Usuário");
-    btnCadastroUsuario.addActionListener(e->{
-      try {
-        TelaCadastroUsuario telaCadastroUsuario = new TelaCadastroUsuario();
-        dispose();
-      } catch (SQLException ex) {
-        throw new RuntimeException(ex);
-      }
-    });
-    btnCadastroRestaurante.setText("Restaurante");
-    btnCadastroRestaurante.addActionListener(e->{
-      try {
-        TelaCadastroRestaurante telaCadastroRestaurante = new TelaCadastroRestaurante();
-        dispose();
-      } catch (SQLException ex) {
-        throw new RuntimeException(ex);
-      }
-    });
+    btnCadastroUsuario.setText("Cadastro Usuário");
+    btnCadastroUsuario.addActionListener(new ActionListener(){
+      public void actionPerformed( ActionEvent evt) {
+        
+        try {
+          new TelaCadastroUsuario();
+          dispose();
+        } catch (SQLException e) {
+        
+          e.printStackTrace();
+        }
+        }});
+
+        btnLogar.setText("Acessar conta");
+        btnLogar.addActionListener(new ActionListener(){
+          public void actionPerformed( ActionEvent evt) {
+            
+            try {
+              new TelaLogin();
+              dispose();
+            } catch (SQLException e) {
+            
+              e.printStackTrace();
+            }
+            }});
+    
+    btnCadastroRestaurante.setText("Cadastro Restaurante");
+    btnCadastroRestaurante.addActionListener(new ActionListener(){
+      public void actionPerformed( ActionEvent evt) {
+        
+        try {
+          new TelaCadastroRestaurante();
+          dispose();
+        } catch (SQLException e) {
+   
+          e.printStackTrace();
+        }
+        }});
+
     add(btnCadastroRestaurante);
     add(btnCadastroUsuario);
+    add(btnLogar);
     add(background);
+
     setVisible(true);
   }
 

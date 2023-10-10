@@ -1,4 +1,4 @@
-package org.example;
+// package org.example;
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -17,14 +17,8 @@ public class CheckBox extends JPanel {
     public void setClicado(String clicado) {
         this.clicado = clicado;
     }
-    public int getContador() {
-        return contador;
-    }
+  
 
-    public void setContador(int contador) {
-        this.contador = contador;
-    }
-    int contador;
     public String getClicado() {
 
         return clicado;
@@ -33,26 +27,14 @@ public class CheckBox extends JPanel {
     FuncaoBanco db;
     private int escolha;
     String clicado;
+
     public int getQuantidade() {
         return quantidade;
-    }
-    String[] vazio;
-
-    public void setSelecionado(String selecionado) {
-        this.selecionado = selecionado;
-    }
-
-    public String[] getVazio() {
-        return vazio;
-    }
-
-    public void setVazio(String[] vazio) {
-        this.vazio = vazio;
     }
 
     String selecionado;
 
-    int quantidade;
+    int quantidade = 1;
     public int getOpcao() {
         return opcao;
     }
@@ -81,16 +63,7 @@ public class CheckBox extends JPanel {
         setSize(270, 55);
         add(selecaoLanche);
     }
-      CheckBox(){
-
-
-        vazio = new String[10];
-
-        selecao = new JComboBox<String>(vazio);
-
-        setSize(270, 55);
-        add(selecao);
-      }
+     
 
     public String checkBoxes(int opcao) throws SQLException {
         db = new FuncaoBanco();
@@ -134,14 +107,14 @@ public class CheckBox extends JPanel {
                 try {
                     switch (escolha){
                         case 1:
-                            id = db.getById(1, selecionado);
+                            id = db.selecionarPorId(1, selecionado);
                             break;
 
                         case 2:
-                            id = db.getById(2, selecionado);
+                            id = db.selecionarPorId(2, selecionado);
                             break;
                         case 3:
-                            id = db.getById(3, selecionado);
+                            id = db.selecionarPorId(3, selecionado);
                             quantidade++;
                             break;
                         default:
@@ -165,7 +138,7 @@ public class CheckBox extends JPanel {
     public String especifico(){
      
 
-        contador++;
+        quantidade++;
         selecaoLanche = new JComboBox<String>(especifico);
         clicado = selecaoLanche.getSelectedItem().toString();
         db = new FuncaoBanco();
@@ -173,13 +146,13 @@ public class CheckBox extends JPanel {
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED){
                         clicado = e.getItem().toString();
-                        quantidade++;
+                      
                     try {
                      
-                        id = db.getById(3, clicado);
+                        id = db.selecionarPorId(3, clicado);
                         clicado = db.selecionarPorNome( id,"id_lanche", "Lanche");
                         System.out.println(clicado);
-                     
+                
                         
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);

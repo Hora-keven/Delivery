@@ -1,4 +1,4 @@
-package org.example;
+// package org.example;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -26,13 +26,13 @@ public class TelaCadastroUsuario{
     }
 
 
-    Tela telaP = new Tela();
+    Tela tela = new Tela();
     Panel panel = new Panel();
     Button btn = new Button();
 
     boolean open;
+
     Label mensagem = new Label();
-    Panel caixaMensagem  = new Panel();
     Label background = new Label();
 
      TelaCadastroUsuario() throws SQLException{
@@ -44,7 +44,7 @@ public class TelaCadastroUsuario{
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaUsuario.png";
         String bosch2 = "projects/logging/src/main/java/Images/telaUsuario.png";
 
-        background.setIcon(new ImageIcon(bosch));
+        background.setIcon(new ImageIcon(casa));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 
@@ -62,7 +62,7 @@ public class TelaCadastroUsuario{
                 if(getSenha().equals(confirmaSenha.getText()) && (!getSenha().equals(null))==(!confirmaSenha.getText().equals(null))){
                         try {
                             inserindoUsuarios();
-
+                         
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
@@ -74,19 +74,21 @@ public class TelaCadastroUsuario{
 
             }
         });
+        mensagem.setSize(350, 100);
+        mensagem.setLocation(178,420);
+        mensagem.setForeground(Color.WHITE);
 
         btn.setSize(270, 50);
         btn.setLocation(190,809);
 
-         telaP.add(nomeUsuario);
-         telaP.add(mensagem);
-
-         telaP.add(cpf);
-         telaP.add(btn);
-         telaP.add(confirmaSenha);
-         telaP.add(senha);
-         telaP.add(background);
-         telaP.setVisible(true);
+         tela.add(nomeUsuario);
+         tela.add(mensagem);
+         tela.add(cpf);
+         tela.add(btn);
+         tela.add(confirmaSenha);
+         tela.add(senha);
+         tela.add(background);
+         tela.setVisible(true);
     }
     public void inserindoUsuarios() throws SQLException{
         db = new FuncaoBanco();
@@ -94,28 +96,28 @@ public class TelaCadastroUsuario{
             usuario = new Usuarios(getNome(), getSenha(), getCPF());
             db.adicionarUsuario(usuario);
             new TelaCadastroEndereco(getCPF(), 1);
-            telaP.dispose();
+            tela.dispose();
         }
 
     }
     public boolean verificaCpf(){
         if(getCPF().length() < 11){
-            System.out.println("Faltam alguns digitos");
+            mensagem.setText("Faltam alguns digitos");
             return false;
         }
         else if(getCPF().length() > 11){
-            System.out.println("Digitos a mais, digite um CPF correto");
+            mensagem.setText("Digitos a mais, digite um CPF correto");
             return false;
         }else
             return true;
     }
     public boolean verificaSenha(){
         if(getSenha().length() < 8){
-            System.out.println("O minimo da senha é 8 digitos");
+            mensagem.setText("O minimo da senha é 8 digitos");
             return false;
         }
         else if(getSenha().length() > 8 && getSenha().length() < 60){
-            System.out.println("Deu certo");
+            mensagem.setText("Deu certo");
             return true;
         }else
             return true;

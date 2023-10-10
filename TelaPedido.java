@@ -1,4 +1,4 @@
-package org.example;
+// package org.example;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -39,12 +39,12 @@ public class TelaPedido {
             restaurantes.setOpaque(false);
 
             Label background = new Label();
-            String casa = "/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/telaedido.png";
-            String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/telaedido.png";
-            String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaedido.png";
+            String casa = "/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/TelaPedido.png";
+            String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/TelaPedido.png";
+            String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaPedido.png";
             String bosch2 = "projects/logging/src/main/java/Images/telaedido.png";
 
-            background.setIcon(new ImageIcon(bosch));
+            background.setIcon(new ImageIcon(casa));
             background.setSize(650, 1000);
             background.setLocation(0, 0);
             restaurantes.setLocation(170, 522);
@@ -75,6 +75,8 @@ public class TelaPedido {
                 public void actionPerformed( ActionEvent evt) {
                                 try {
                                     inserirPedido();
+                                    new Aplicativo();
+                                    tela.dispose();
                                 } catch (SQLException e) {
                                     // TODO Auto-generated catch block
                                     e.printStackTrace();
@@ -99,13 +101,14 @@ public class TelaPedido {
         }
         public String[] inserirPedido() throws SQLException{
 
-                int fkU = db.getById(1, getCPF());
+                int fkU = db.selecionarPorId(1, getCPF());
                
-                int fkR = db.getById(5, restaurantes.getSelecionado());
+                int fkR = db.selecionarPorId(5, restaurantes.getSelecionado());
                 System.out.println(restaurantes.getSelecionado());
 
-                int fkL = db.getById(3, lanches.getClicado());
-                float preco = db.selecionarPreco(lanches.getId());
+                int fkL = db.selecionarPorId(3, lanches.getClicado());
+                float preco = db.selecionarPreco(fkL);
+            
 
                 float precoTotal = preco*lanches.getQuantidade();
            
@@ -117,8 +120,7 @@ public class TelaPedido {
       
         public void cardapioDoRestaurante() throws SQLException{
 
-            
-            int fkR = db.getById(5, restaurantes.getSelecionado());
+            int fkR = db.selecionarPorId(5, restaurantes.getSelecionado());
             db.selecionarFk(1, cardapios, fkR);
             int index =0;
             for (String c : cardapios) {

@@ -1,5 +1,5 @@
 
-package org.example;
+// package org.example;
 import javax.swing.JButton;
 
 
@@ -9,7 +9,7 @@ public class Button extends JButton {
     public Button (){
 
         this.setForeground(Color.black);
-        this.setFont(new Font("Arial", Font.BOLD, 20));
+        this.setFont(new Font("Arial", Font.BOLD, 18));
        
         setBackground(Color.LIGHT_GRAY);
         
