@@ -1,4 +1,4 @@
-// package org.example;
+package org.example;// package org.example;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -44,7 +44,7 @@ public class TelaCadastroUsuario{
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaUsuario.png";
         String bosch2 = "projects/logging/src/main/java/Images/telaUsuario.png";
 
-        background.setIcon(new ImageIcon(casa));
+        background.setIcon(new ImageIcon(senai));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 

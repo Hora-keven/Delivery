@@ -1,15 +1,14 @@
-package org.example;// package org.example;
-import javax.swing.*;
-import java.awt.*;
+package org.example;
+import javax.swing.ImageIcon;
 import java.awt.event.*;
 import java.sql.SQLException;
 
-public class TelaCadastroRestaurante {
+public class CadastroRestaurante{
 
-    Senha confirmaSenha = new Senha();
+    Input confirmaSenha = new Input();
     Input cnpj  = new Input();
     Input nomeRestaurante = new Input();
-    Senha senha = new Senha();
+    Input senha = new Input();
     Restaurante restaurante;
     FuncaoBanco db;
 
@@ -25,28 +24,19 @@ public class TelaCadastroRestaurante {
         return cnpj.getText();
     }
 
-    Tela tela = new Tela();
 
+    Tela tela = new Tela();
+    Panel panel = new Panel();
     Button btn = new Button();
     Label mensagem = new Label();
 
-    public String getConfirmaSenha() {
-        return confirmaSenha.getText();
-    }
 
-    Label background = new Label();
-
-    TelaCadastroRestaurante() throws SQLException{
-
-        String casa = "/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/telaRestaurante.png";
+    CadastroRestaurante() throws SQLException{
+        Label background = new Label();
+        String casa = "/home/keven/Documentos/Delivery/Images/telaPrincipal.png";
         String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/telaRestaurante.png";
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaRestaurante.png";
-        String bosch2 = "projects/logging/src/main/java/Images/telaRestaurante.png";
-        
-        mensagem.setSize(350, 100);
-        mensagem.setLocation(180,420);
-        mensagem.setForeground(Color.WHITE);
-        background.setIcon(new ImageIcon(senai));
+        background.setIcon(new ImageIcon(casa));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 
@@ -60,30 +50,32 @@ public class TelaCadastroRestaurante {
 
         btn.addActionListener(new ActionListener(){
             public void actionPerformed( ActionEvent evt) {
-                if(getSenha().equals(getConfirmaSenha()) && (!getSenha().equals(null))==(!getConfirmaSenha().equals(null))){
+                if(getSenha().equals(confirmaSenha.getText()) && (!getSenha().equals(null))==(!confirmaSenha.getText().equals(null))){
                     try {
                         inserindoRestaurante();
-
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
                     System.out.println(getNomeRestaurante());
-                }else if(!senha.getText().equals(getConfirmaSenha())&& (!getSenha().equals(null))==(!getConfirmaSenha().equals(null)) ){
+                }else if(!senha.getText().equals(confirmaSenha.getText())&& (!getSenha().equals(null))==(!confirmaSenha.getText().equals(null)) ){
                     mensagem.setText("Coloque uma senha correta!");
                 }
+
+
+
             }
         });
 
         btn.setSize(270, 50);
         btn.setLocation(190,808);
+        panel.add(background);
         tela.add(nomeRestaurante);
         tela.add(mensagem);
         tela.add(confirmaSenha);
         tela.add(senha);
         tela.add(cnpj);
         tela.add(btn);
-        tela.add(background);
-        tela.setVisible(true);
+        tela.add(panel);
 
     }
     public void inserindoRestaurante() throws SQLException{
@@ -91,34 +83,33 @@ public class TelaCadastroRestaurante {
         if (verificaCnpj()==true && verificaSenha() == true){
             restaurante = new Restaurante(getNomeRestaurante(), getCnpj(), getSenha());
             db.adicionaRestaurante(restaurante);
-            new TelaCadastroEndereco(getCnpj(), 2);
-            tela.dispose();
+            new CadastroEndereco(getCnpj(), 2);
         }
     }
     public boolean verificaCnpj(){
-        if(getCnpj().length() < 18 ){
-            mensagem.setText("Faltam alguns digitos");
+        if(getCnpj().length() < 14){
+            System.out.println("Faltam alguns digitos");
             return false;
         }
-        else if(getCnpj().length() > 18){
-            mensagem.setText("Digitos a mais, digite um CNPJ correto");
+        else if(getCnpj().length() > 14){
+            System.out.println("Digitos a mais, digite um CNPJ correto");
             return false;
         }else
             return true;
     }
     public boolean verificaSenha(){
         if(getSenha().length() < 8){
-            mensagem.setText("O minimo da senha é 8 digitos");
+            System.out.println("O minimo da senha é 8 digitos");
             return false;
         }
         else if(getSenha().length() > 8 && getSenha().length() < 60){
-            mensagem.setText("Deu certo");
+            System.out.println("Deu certo");
             return true;
         }else
             return true;
     }
 
     public static void main(String[] args) throws SQLException {
-        new TelaCadastroRestaurante();
+        new CadastroRestaurante();
     }
 }

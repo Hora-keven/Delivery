@@ -1,4 +1,4 @@
-// package org.example;
+package org.example;// package org.example;
 import javax.swing.JFrame;
 import java.awt.*;
 
@@ -10,6 +10,7 @@ public class Tela extends JFrame {
         this.setResizable(false);
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
     
 }

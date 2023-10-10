@@ -1,4 +1,4 @@
-// package org.example;
+package org.example;// package org.example;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,7 +17,10 @@ public class TelaPedido {
             return CPF;
         }
 
-
+        public int getQuantidade() {
+            return quantidade;
+        }
+        int quantidade =0;
 
         Pedidos pedido;
 
@@ -28,6 +31,7 @@ public class TelaPedido {
         Tela tela = new Tela();
         Panel panel = new Panel();
         Button btn = new Button();
+        Button btnQuantidade = new Button();
         Button btnProximo = new Button();
         Label mensagem = new Label();
         ArrayList<String> cardapios = new ArrayList<String>();
@@ -44,7 +48,7 @@ public class TelaPedido {
             String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaPedido.png";
             String bosch2 = "projects/logging/src/main/java/Images/telaedido.png";
 
-            background.setIcon(new ImageIcon(casa));
+            background.setIcon(new ImageIcon(senai));
             background.setSize(650, 1000);
             background.setLocation(0, 0);
             restaurantes.setLocation(170, 522);
@@ -54,22 +58,27 @@ public class TelaPedido {
             btnProximo.setText(">");
             btnProximo.setSize(120, 50);
             btn.setSize(60, 50);
+
+            btnQuantidade.setSize(60, 50);
+            btnQuantidade.setLocation(414,620);
             
             btn.addActionListener(new ActionListener(){
                 public void actionPerformed( ActionEvent evt) {
 
                             try {
-                             
                                 cardapioDoRestaurante();
                             } catch (SQLException e) {
                                 e.printStackTrace();
                             }
-                        
-                   
-                        }
-                      
-                
+                 }
             });
+            btnQuantidade.addActionListener(new ActionListener(){
+                public void actionPerformed( ActionEvent evt) {
+                        quantidade++;
+                        btnQuantidade.setText(String.format(String.valueOf(quantidade)));
+                }
+            });
+
                 
             btnProximo.addActionListener(new ActionListener(){
                 public void actionPerformed( ActionEvent evt) {
@@ -78,7 +87,6 @@ public class TelaPedido {
                                     new Aplicativo();
                                     tela.dispose();
                                 } catch (SQLException e) {
-                                    // TODO Auto-generated catch block
                                     e.printStackTrace();
                                 }
                                
@@ -90,7 +98,7 @@ public class TelaPedido {
 
               
             tela.add(restaurantes);
-     
+            tela.add(btnQuantidade);
             tela.add(btn);
             tela.add(btnProximo);
             panel.add(background);
@@ -102,15 +110,11 @@ public class TelaPedido {
         public String[] inserirPedido() throws SQLException{
 
                 int fkU = db.selecionarPorId(1, getCPF());
-               
                 int fkR = db.selecionarPorId(5, restaurantes.getSelecionado());
                 System.out.println(restaurantes.getSelecionado());
-
                 int fkL = db.selecionarPorId(3, lanches.getClicado());
                 float preco = db.selecionarPreco(fkL);
-            
-
-                float precoTotal = preco*lanches.getQuantidade();
+                float precoTotal = preco*getQuantidade();
            
                 pedido = new Pedidos(precoTotal,fkU,fkL,fkR);
                 db.adicionarPedido(pedido);
@@ -123,14 +127,13 @@ public class TelaPedido {
             int fkR = db.selecionarPorId(5, restaurantes.getSelecionado());
             db.selecionarFk(1, cardapios, fkR);
             int index =0;
-            for (String c : cardapios) {
-               
-                this.cardapioRestauranteId[index] = c;
+            for (String item : cardapios) {
+                cardapioRestauranteId[index] = item;
                 index++;
             }
 
             lanches = new CheckBox(cardapioRestauranteId);
-            lanches.setLocation(199, 620);
+            lanches.setLocation(185, 620);
             lanches.setOpaque(false);
             tela.add(lanches);
             

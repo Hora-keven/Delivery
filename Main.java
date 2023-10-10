@@ -1,4 +1,5 @@
-// package org.example;
+package org.example;
+
 import java.sql.SQLException;
 
 public class Main {

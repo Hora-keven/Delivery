@@ -1,3 +1,5 @@
+package org.example;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -30,7 +32,7 @@ public class TelaLogin  extends Tela{
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaLogin.png";
         String bosch2 = "projects/logging/src/main/java/Images/telaedido.png";
    
-        background.setIcon(new ImageIcon(casa));
+        background.setIcon(new ImageIcon(senai));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
         mensagem.setLocation(300, 200);
@@ -38,14 +40,13 @@ public class TelaLogin  extends Tela{
         btn.addActionListener(new ActionListener(){
             public void actionPerformed( ActionEvent evt) {
                         try {
-                            verificaCpf();
+                            if (verificaCpf() == verificaSenha()){
+                                new TelaPedido(getCPF());
+                                dispose();
+                            }
                         } catch (SQLException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
-              
-               
-
             }
         });
         
@@ -60,7 +61,7 @@ public class TelaLogin  extends Tela{
         add(cpf);
         add(btn);
         add(background);
-        setVisible(true);
+
     }
     public boolean verificaCpf() throws SQLException{
         if(getCPF().length() < 11){
@@ -85,13 +86,22 @@ public class TelaLogin  extends Tela{
             return false;
         }
     }
-    public boolean verificaSenha(){
+    public boolean verificaSenha() throws SQLException {
         if(getSenha().length() < 8){
             mensagem.setText("O minimo da senha é 8 digitos");
             return false;
         }
         else if(getSenha().length() > 8 && getSenha().length() < 60){
             mensagem.setText("Deu certo");
+            FuncaoBanco db = new FuncaoBanco();
+            db.selecionar(1, senhacadastrada, false);
+
+            for (String senha : cpfCadastrado) {
+                if(getSenha().equals(senha));{
+                    System.out.println("cadastrado");
+                    return true;
+                }
+            }
             return true;
         }else
             return true;

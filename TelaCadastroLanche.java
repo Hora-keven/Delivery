@@ -1,4 +1,4 @@
-
+package org.example;
 // package org.example;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -43,7 +43,7 @@ public class TelaCadastroLanche {
             String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/TelaLanche.png";
             String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaLanche.png";
             String bosch2 = "projects/logging/src/main/java/Images/TelaLanches.png";
-            background.setIcon(new ImageIcon(casa));
+            background.setIcon(new ImageIcon(senai));
             background.setSize(650, 1000);
             background.setLocation(0, 0);
 
@@ -84,6 +84,7 @@ public class TelaCadastroLanche {
                     lanche = new Lanche(getNome(), preco, getId());
                     db.adicionarlanche(lanche);
                     tela.dispose();
+                    new Aplicativo();
                 }
 
             }

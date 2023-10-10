@@ -1,4 +1,4 @@
-// package org.example;
+package org.example;
 
 import javax.swing.ImageIcon;
 
@@ -27,7 +27,7 @@ public class Aplicativo extends Tela {
     btnLogar.setLocation(190,840);
     btnLogar.setSize(270, 50);
 
-    background.setIcon(new ImageIcon(casa));
+    background.setIcon(new ImageIcon(senai));
     background.setSize(650, 1000);
     background.setLocation(0, 0);
 
