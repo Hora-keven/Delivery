@@ -3,7 +3,7 @@ banco = sqlite3.connect('Aplicativo.db')
 cursor = banco.cursor()
 
 
-cursor.execute("DROP TABLE Cadastra_Usuario")
+# cursor.execute("DROP TABLE Cadastra_Usuario")
 cursor.execute('''CREATE TABLE IF NOT EXISTS Cadastra_Usuario (
     id_usuario integer not null primary key,
     nome varchar(60),
@@ -11,7 +11,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Cadastra_Usuario (
     cpf varchar(11)
    )''')
 
-cursor.execute("DROP TABLE Cadastro_restaurante")
+# cursor.execute("DROP TABLE Cadastro_restaurante")
 cursor.execute('''CREATE TABLE IF NOT EXISTS Cadastro_restaurante (
     id_restaurante integer not null primary key,
     nome_restaurante varchar(60),
@@ -22,7 +22,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Cadastro_restaurante (
   )''')
 
 
-cursor.execute("DROP TABLE Endereco")
+# cursor.execute("DROP TABLE Endereco")
 cursor.execute('''CREATE TABLE IF NOT EXISTS Endereco (
     id_endereco integer not null primary key,
     posicao_x integer,
@@ -33,7 +33,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Endereco (
     FOREIGN KEY(fk_usuario) REFERENCES Endereco(id_endereco)
   )''')
 # cursor.execute('INSERT INTO Cadastra_Usuario VALUES (null,"Keven","12345", "53688621808")')
-cursor.execute("DROP TABLE Lanche")
+# cursor.execute("DROP TABLE Lanche")
 cursor.execute("""CREATE TABLE IF NOT EXISTS Lanche(
     id_lanche integer not null  primary key,
     nome_lanche varchar(100) NOT NULL,
@@ -42,7 +42,7 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS Lanche(
     FOREIGN KEY(fk_restaurante) REFERENCES Cadastro_restaurante(id_restaurante)
     )""")
 
-cursor.execute("DROP TABLE Pedido")
+# cursor.execute("DROP TABLE Pedido")
 cursor.execute("""CREATE TABLE IF NOT EXISTS Pedido(
     id_pedido integer not null  primary key,
     preço_total FLOAT,

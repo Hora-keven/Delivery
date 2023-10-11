@@ -1,4 +1,4 @@
-
+package org.example;
 // 
 import javax.swing.*;
 import java.awt.*;
@@ -47,7 +47,7 @@ public class TelaCadastroRestaurante {
         mensagem.setSize(350, 100);
         mensagem.setLocation(180, 420);
         mensagem.setForeground(Color.WHITE);
-        background.setIcon(new ImageIcon(casa));
+        background.setIcon(new ImageIcon(senai));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 

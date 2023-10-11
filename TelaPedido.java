@@ -1,4 +1,4 @@
-// 
+package org.example;//
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -34,8 +34,14 @@ public class TelaPedido extends Tela{
     Button btnQuantidade = new Button();
     Button btnProximo = new Button();
     Label mensagem = new Label();
+
+    public int getFkU() {
+        return fkU;
+    }
+
     ArrayList<String> cardapios = new ArrayList<String>();
     String[] cardapioRestauranteId = new String[20];
+    int fkU;
 
     TelaPedido(String cpf) throws SQLException {
         this.CPF = cpf;
@@ -47,7 +53,7 @@ public class TelaPedido extends Tela{
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaPedido.png";
         String bosch2 = "projects/logging/src/main/java/Images/telaedido.png";
 
-        background.setIcon(new ImageIcon(casa));
+        background.setIcon(new ImageIcon(senai));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
         restaurantes.setLocation(170, 522);
@@ -82,7 +88,7 @@ public class TelaPedido extends Tela{
             public void actionPerformed(ActionEvent evt) {
                 try {
                     inserirPedido();
-                    new Aplicativo();
+                    new TelaFinal(getFkU());
                     dispose();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -105,7 +111,7 @@ public class TelaPedido extends Tela{
 
     public String[] inserirPedido() throws SQLException {
 
-        int fkU = db.selecionarPorId(1, getCPF());
+        fkU = db.selecionarPorId(1, getCPF());
         int fkR = db.selecionarPorId(5, restaurantes.getSelecionado());
         System.out.println(restaurantes.getSelecionado());
         int fkL = db.selecionarPorId(3, lanches.getClicado());

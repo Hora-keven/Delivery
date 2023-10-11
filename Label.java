@@ -1,3 +1,4 @@
+package org.example;
 
 import java.awt.*;
 import javax.swing.JLabel;

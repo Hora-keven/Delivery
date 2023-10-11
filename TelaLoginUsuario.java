@@ -1,3 +1,5 @@
+package org.example;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -29,7 +31,7 @@ public class TelaLoginUsuario  extends Tela {
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaLogin.png";
         String bosch2 = "projects/logging/src/main/java/Images/telaedido.png";
    
-        background.setIcon(new ImageIcon(casa));
+        background.setIcon(new ImageIcon(senai));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
         mensagem.setLocation(300, 200);
