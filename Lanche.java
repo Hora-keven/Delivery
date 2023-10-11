@@ -1,5 +1,4 @@
 
-package org.example;
 public class Lanche {
     String nome;
     float preco;
@@ -10,12 +9,12 @@ public class Lanche {
         this.preco = preco;
         this.fk_restaurante = fk_restaurante;
     }
+
     public Lanche(String nome, float preco) {
         this.nome = nome;
         this.preco = preco;
 
     }
-
 
     public String getNome() {
         return nome;

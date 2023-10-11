@@ -1,5 +1,5 @@
-package org.example;
-// package org.example;
+
+// 
 
 public class Restaurante {
 
@@ -11,21 +11,19 @@ public class Restaurante {
         return senha;
     }
 
-    public Restaurante(String nome, String cnpj, String senha){
+    public Restaurante(String nome, String cnpj, String senha) {
         this.nome = nome;
         this.cnpj = cnpj;
         this.senha = senha;
-      
+
     }
-  
-    public String getNome(){
+
+    public String getNome() {
         return nome;
     }
-    public String getCnpj(){
+
+    public String getCnpj() {
         return cnpj;
     }
-
-
-
 
 }

@@ -1,12 +1,11 @@
-package org.example;// package org.example;
+// 
 
- 
 public class Usuarios {
-
 
         String nome;
         private String senha;
         private String CPF;
+
         Usuarios(String nome, String senha, String CPF) {
                 this.nome = nome;
                 this.senha = senha;

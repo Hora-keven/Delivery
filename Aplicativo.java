@@ -1,10 +1,10 @@
-package org.example;
 
-import javax.swing.ImageIcon;
+
+import javax.swing.*;
+import java.awt.event.*;
+import java.sql.SQLException;
 
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.awt.event.*;
 
 
 public class Aplicativo extends Tela {
@@ -27,7 +27,7 @@ public class Aplicativo extends Tela {
     btnLogar.setLocation(190,840);
     btnLogar.setSize(270, 50);
 
-    background.setIcon(new ImageIcon(senai));
+    background.setIcon(new ImageIcon(casa));
     background.setSize(650, 1000);
     background.setLocation(0, 0);
 
@@ -39,7 +39,6 @@ public class Aplicativo extends Tela {
           new TelaCadastroUsuario();
           dispose();
         } catch (SQLException e) {
-        
           e.printStackTrace();
         }
         }});
@@ -47,15 +46,16 @@ public class Aplicativo extends Tela {
         btnLogar.setText("Acessar conta");
         btnLogar.addActionListener(new ActionListener(){
           public void actionPerformed( ActionEvent evt) {
-            
-            try {
-              new TelaLogin();
-              dispose();
-            } catch (SQLException e) {
-            
-              e.printStackTrace();
-            }
-            }});
+          try {
+            new TelaLoginUsuario();
+            dispose();
+          } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+          }
+
+        } });
+     
     
     btnCadastroRestaurante.setText("Cadastro Restaurante");
     btnCadastroRestaurante.addActionListener(new ActionListener(){
@@ -68,18 +68,16 @@ public class Aplicativo extends Tela {
    
           e.printStackTrace();
         }
-        }});
-
+ }});
+    add(btnLogar);
     add(btnCadastroRestaurante);
     add(btnCadastroUsuario);
-    add(btnLogar);
     add(background);
-
     setVisible(true);
   }
 
   public static void main(String[] args) {
-    new Aplicativo();
+      new Aplicativo();
   }
 
 }

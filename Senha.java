@@ -1,9 +1,9 @@
-package org.example;// package org.example;
+// 
 
 import javax.swing.*;
 
 public class Senha extends JPasswordField {
-    Senha(){
+    Senha() {
         this.setSize(270, 50);
     }
 }

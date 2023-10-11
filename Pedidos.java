@@ -1,8 +1,8 @@
-package org.example;// package org.example;
+// 
 
 public class Pedidos {
-   
-        public float getPrecoTotal() {
+
+    public float getPrecoTotal() {
         return precoTotal;
     }
 
@@ -10,31 +10,29 @@ public class Pedidos {
         this.precoTotal = precoTotal;
     }
 
-        float precoTotal;
- 
-        int fkU;
-        int fkR;
-        int fkL;
-    
-        Pedidos(float preco,int fkU, int fkR, int fkL){
-            this.precoTotal = preco;
-            this.fkU = fkU;
-            this.fkR = fkR;
-            this.fkL=fkL;
-        }
+    float precoTotal;
 
-        public int getFkU() {
-            return fkU;
-        }
+    int fkU;
+    int fkR;
+    int fkL;
 
-        public int getFkR() {
-            return fkR;
-        }
+    Pedidos(float preco, int fkU, int fkR, int fkL) {
+        this.precoTotal = preco;
+        this.fkU = fkU;
+        this.fkR = fkR;
+        this.fkL = fkL;
+    }
 
-        public int getFkL() {
-            return fkL;
-        }
+    public int getFkU() {
+        return fkU;
+    }
 
+    public int getFkR() {
+        return fkR;
+    }
 
-     
+    public int getFkL() {
+        return fkL;
+    }
+
 }
