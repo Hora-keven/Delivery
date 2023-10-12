@@ -1,4 +1,4 @@
-package org.example;
+ 
 // 
 import javax.swing.*;
 import java.awt.*;
@@ -42,7 +42,7 @@ public class TelaCadastroUsuario extends Tela{
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaUsuario.png";
         String bosch2 = "projects/logging/src/main/java/Images/telaUsuario.png";
 
-        background.setIcon(new ImageIcon(senai));
+        background.setIcon(new ImageIcon(casa));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 

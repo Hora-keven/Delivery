@@ -1,11 +1,11 @@
-package org.example;
+ 
 // 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
 
-public class TelaCadastroRestaurante {
+public class TelaCadastroRestaurante extends Tela{
 
     Senha confirmaSenha = new Senha();
     Input cnpj = new Input();
@@ -26,7 +26,7 @@ public class TelaCadastroRestaurante {
         return cnpj.getText();
     }
 
-    Tela tela = new Tela();
+
 
     Button btn = new Button();
     Label mensagem = new Label();
@@ -47,7 +47,7 @@ public class TelaCadastroRestaurante {
         mensagem.setSize(350, 100);
         mensagem.setLocation(180, 420);
         mensagem.setForeground(Color.WHITE);
-        background.setIcon(new ImageIcon(senai));
+        background.setIcon(new ImageIcon(casa));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 
@@ -78,14 +78,14 @@ public class TelaCadastroRestaurante {
 
         btn.setSize(270, 50);
         btn.setLocation(190, 808);
-        tela.add(nomeRestaurante);
-        tela.add(mensagem);
-        tela.add(confirmaSenha);
-        tela.add(senha);
-        tela.add(cnpj);
-        tela.add(btn);
-        tela.add(background);
-        tela.setVisible(true);
+        add(nomeRestaurante);
+        add(mensagem);
+        add(confirmaSenha);
+        add(senha);
+        add(cnpj);
+        add(btn);
+        add(background);
+        setVisible(true);
 
     }
 
@@ -95,7 +95,7 @@ public class TelaCadastroRestaurante {
             restaurante = new Restaurante(getNomeRestaurante(), getCnpj(), getSenha());
             db.adicionaRestaurante(restaurante);
             new TelaCadastroEndereco(getCnpj(), 2);
-            tela.dispose();
+            dispose();
         }
     }
 

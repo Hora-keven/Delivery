@@ -1,4 +1,4 @@
-package org.example;
+ 
 // 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class TelaCadastroLanche {
+public class TelaCadastroLanche extends Tela {
 
     Input preco = new Input();
     Input nome = new Input();
@@ -24,17 +24,15 @@ public class TelaCadastroLanche {
     }
 
     Button btn = new Button();
-
+    Button btnApagar = new Button();
     CheckBox restaurantes;
     Lanche lanche;
     Label mensagem = new Label();
-    Tela tela = new Tela();
     Label background = new Label();
-    FuncaoBanco db;
+    FuncaoBanco db = new FuncaoBanco();;
     int id;
 
     TelaCadastroLanche(int id) throws SQLException {
-
         this.id = id;
         mensagem.setSize(350, 100);
         mensagem.setLocation(300, 420);
@@ -43,54 +41,63 @@ public class TelaCadastroLanche {
         String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/TelaLanche.png";
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaLanche.png";
         String bosch2 = "projects/logging/src/main/java/Images/TelaLanches.png";
-        background.setIcon(new ImageIcon(senai));
+
+        background.setIcon(new ImageIcon(casa));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
-
         nome.setLocation(199, 522);
         preco.setLocation(199, 590);
+        btnApagar.setText("Apagar");
+        btn.setText("Ok");
 
         btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-
                 try {
-
                     inserindoLanche();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                System.out.println(getNome());
             }
         });
-
+        btnApagar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+               System.out.println("Apagando");
+               try {
+                new TelaApagar(getId());
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            }
+        });
         btn.setSize(150, 50);
         btn.setLocation(249, 673);
-
-        tela.add(nome);
-        tela.add(mensagem);
-
-        tela.add(preco);
-        tela.add(btn);
-        tela.add(background);
-        tela.setVisible(true);
+        btnApagar.setSize(150, 50);
+        btnApagar.setLocation(480, 883);
+       
+        add(btnApagar);
+        add(nome);
+        add(mensagem);
+        add(preco);
+        add(btn);
+        add(background);
+        setVisible(true);
     }
 
     public void inserindoLanche() throws SQLException {
-        db = new FuncaoBanco();
-
+      
         if (verificaPreco() == true) {
             float preco = Float.parseFloat(getPreco());
-
             lanche = new Lanche(getNome(), preco, getId());
             db.adicionarlanche(lanche);
-            tela.dispose();
+            dispose();
             new Aplicativo();
         }
 
     }
 
     public boolean verificaPreco() throws SQLException {
-        db = new FuncaoBanco();
+    
         if (getPreco().substring(0, getPreco().length() - 1).matches("[A-Z]*")
                 || getPreco().substring(0, getPreco().length() - 1).matches("[a-z]*")) {
             return false;

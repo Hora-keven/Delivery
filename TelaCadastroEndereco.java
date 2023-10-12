@@ -1,4 +1,4 @@
-package org.example;
+ 
 // 
 import java.awt.event.*;
 import javax.swing.ImageIcon;
@@ -43,7 +43,7 @@ public class TelaCadastroEndereco {
         this.nome = nome;
         this.opcao = opcao;
 
-        background.setIcon(new ImageIcon(senai));
+        background.setIcon(new ImageIcon(casa));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 
