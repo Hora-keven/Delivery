@@ -1,4 +1,5 @@
-// package org.example;
+package org.example.Componentes;// package org.example;
+import org.example.Banco.FuncaoBanco;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -42,14 +43,14 @@ public class CheckBox extends JPanel {
         return selecionado;
     }
 
-    CheckBox(int opcao) throws SQLException {
+    public CheckBox(int opcao) throws SQLException {
         this.opcao = opcao;
         checkBoxes(getOpcao());
         setSize(270, 55);
         add(selecao);
     }
 
-    CheckBox(String[] especifico) {
+    public CheckBox(String[] especifico) {
         this.especifico = especifico;
         especifico();
 

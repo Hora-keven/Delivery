@@ -1,4 +1,9 @@
- 
+package org.example.Telas;
+import org.example.Aplicativo;
+import org.example.Banco.FuncaoBanco;
+import org.example.Componentes.*;
+
+import org.example.Classes.*;
 // 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -25,7 +30,6 @@ public class TelaCadastroLanche extends Tela {
 
     Button btn = new Button();
     Button btnApagar = new Button();
-    CheckBox restaurantes;
     Lanche lanche;
     Label mensagem = new Label();
     Label background = new Label();
@@ -37,12 +41,9 @@ public class TelaCadastroLanche extends Tela {
         mensagem.setSize(350, 100);
         mensagem.setLocation(300, 420);
 
-        String casa = "/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/TelaLanche.png";
-        String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/TelaLanche.png";
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaLanche.png";
-        String bosch2 = "projects/logging/src/main/java/Images/TelaLanches.png";
 
-        background.setIcon(new ImageIcon(casa));
+        background.setIcon(new ImageIcon(bosch));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
         nome.setLocation(199, 522);
@@ -65,7 +66,6 @@ public class TelaCadastroLanche extends Tela {
                try {
                 new TelaApagar(getId());
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             }

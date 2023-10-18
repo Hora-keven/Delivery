@@ -1,4 +1,9 @@
- 
+package org.example.Telas;
+import org.example.Banco.FuncaoBanco;
+import org.example.Classes.Restaurante;
+import org.example.Componentes.*;
+import org.example.Componentes.Button;
+import org.example.Componentes.Label;
 // 
 import javax.swing.*;
 import java.awt.*;
@@ -37,17 +42,13 @@ public class TelaCadastroRestaurante extends Tela{
 
     Label background = new Label();
 
-    TelaCadastroRestaurante() throws SQLException {
-
-        String casa = "/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/telaRestaurante.png";
-        String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/telaRestaurante.png";
+    public TelaCadastroRestaurante() throws SQLException {
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaRestaurante.png";
-        String bosch2 = "projects/logging/src/main/java/Images/telaRestaurante.png";
 
         mensagem.setSize(350, 100);
         mensagem.setLocation(180, 420);
         mensagem.setForeground(Color.WHITE);
-        background.setIcon(new ImageIcon(casa));
+        background.setIcon(new ImageIcon(bosch));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 

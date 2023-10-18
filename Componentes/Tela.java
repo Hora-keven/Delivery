@@ -1,4 +1,4 @@
- 
+package org.example.Componentes;
 // 
 import javax.swing.JFrame;
 

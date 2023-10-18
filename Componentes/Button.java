@@ -1,4 +1,4 @@
-// package org.example;
+package org.example.Componentes;// package org.example;
 
 import javax.swing.JButton;
 

@@ -1,4 +1,7 @@
- //
+package org.example.Telas;
+import org.example.Banco.FuncaoBanco;
+import org.example.Classes.Pedidos;
+import org.example.Componentes.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -43,12 +46,9 @@ public class TelaPedido extends Tela{
         restaurantes.setOpaque(false);
 
         Label background = new Label();
-        String casa = "/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/TelaPedido.png";
-        String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/TelaPedido.png";
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaPedido.png";
-        String bosch2 = "projects/logging/src/main/java/Images/telaedido.png";
 
-        background.setIcon(new ImageIcon(casa));
+        background.setIcon(new ImageIcon(bosch));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
         restaurantes.setLocation(170, 522);
@@ -82,7 +82,7 @@ public class TelaPedido extends Tela{
                 try {
                     inserirPedido();
                     new TelaFinal(getFkU());
-                    dispose();
+
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -108,6 +108,7 @@ public class TelaPedido extends Tela{
         float precoTotal = preco * getQuantidade();
         pedido = new Pedidos(precoTotal, fkU, fkL, fkR);
         db.adicionarPedido(pedido);
+
         return cardapioRestauranteId;
     }
 
@@ -125,7 +126,5 @@ public class TelaPedido extends Tela{
         add(lanches);
     }
 
-    public static void main(String[] args) throws SQLException {
-        new TelaPedido("53688621808");
-    }
+
 }

@@ -1,4 +1,4 @@
- //
+package org.example.Classes; //
 
 public class Usuarios {
 
@@ -6,7 +6,7 @@ public class Usuarios {
         private String senha;
         private String CPF;
 
-        Usuarios(String nome, String senha, String CPF) {
+        public Usuarios(String nome, String senha, String CPF) {
                 this.nome = nome;
                 this.senha = senha;
                 this.CPF = CPF;

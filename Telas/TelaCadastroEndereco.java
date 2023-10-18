@@ -1,4 +1,7 @@
- 
+package org.example.Telas;
+import org.example.Banco.FuncaoBanco;
+import org.example.Classes.Endereco;
+import org.example.Componentes.*;
 // 
 import java.awt.event.*;
 import javax.swing.ImageIcon;
@@ -35,15 +38,13 @@ public class TelaCadastroEndereco {
     }
 
     TelaCadastroEndereco(String nome, int opcao) {
-        String casa = "/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/CadastroEndereco.png";
-        String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/CadastroEndereco.png";
+
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\CadastroEndereco.png";
-        String bosch2 = "projects/logging/src/main/java/Images/CadastroEndereco.png";
 
         this.nome = nome;
         this.opcao = opcao;
 
-        background.setIcon(new ImageIcon(casa));
+        background.setIcon(new ImageIcon(bosch));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 

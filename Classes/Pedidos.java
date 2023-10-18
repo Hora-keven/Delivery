@@ -1,4 +1,4 @@
- //
+package org.example.Classes; //
 
 public class Pedidos {
 
@@ -16,7 +16,7 @@ public class Pedidos {
     int fkR;
     int fkL;
 
-    Pedidos(float preco, int fkU, int fkR, int fkL) {
+    public Pedidos(float preco, int fkU, int fkR, int fkL) {
         this.precoTotal = preco;
         this.fkU = fkU;
         this.fkR = fkR;

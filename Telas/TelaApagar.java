@@ -1,11 +1,15 @@
- //
+package org.example.Telas;
 
- import javax.swing.*;
- import java.awt.event.ActionEvent;
- import java.awt.event.ActionListener;
- 
- import java.sql.SQLException;
- import java.util.ArrayList;
+
+import org.example.Aplicativo;
+import org.example.Banco.FuncaoBanco;
+import org.example.Componentes.*;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
  
  public class TelaApagar extends Tela{
  
@@ -38,15 +42,11 @@
          lanches = new CheckBox(lancheRestauranteId);
          lanches.setLocation(185, 620);
          lanches.setOpaque(false);
-        
- 
+
          Label background = new Label();
-         String casa = "/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/TelaApagar.png";
-         String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/TelaApagar.png";
          String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaApagar.png";
-         String bosch2 = "projects/logging/src/main/java/Images/telaedido.png";
  
-         background.setIcon(new ImageIcon(casa));
+         background.setIcon(new ImageIcon(bosch));
          background.setSize(650, 1000);
          background.setLocation(0, 0);
          lanches.setLocation(170, 522);
@@ -55,11 +55,9 @@
          btnProximo.setText(">");
          btnProximo.setSize(120, 50);
          btn.setSize(60, 50);
-       
- 
+
          btn.addActionListener(new ActionListener() {
              public void actionPerformed(ActionEvent evt) {
-              
                 try {
                     System.out.println(lanches.getId());
                     db.deletarPorId(lanches.getId());
@@ -77,21 +75,15 @@
                 dispose();
              }
          });
-        
          add(lanches);
          add(mensagem);
          add(btn);
          add(btnProximo);
          panel.add(background);
          add(panel);
-     
          setVisible(true);
  
      }
- 
-   
- 
- 
      public static void main(String[] args) throws SQLException {
          new TelaApagar(1);
      }

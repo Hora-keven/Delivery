@@ -1,4 +1,4 @@
- 
+package org.example.Classes;
 
 public class Endereco {
     int eixoX;

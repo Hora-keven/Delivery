@@ -1,5 +1,11 @@
- 
-// 
+package org.example.Telas;
+import org.example.Banco.FuncaoBanco;
+import org.example.Classes.Usuarios;
+import org.example.Componentes.*;
+import org.example.Componentes.Button;
+import org.example.Componentes.Label;
+import org.example.Componentes.Panel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -26,23 +32,16 @@ public class TelaCadastroUsuario extends Tela{
         return cpf.getText();
     }
 
-  
-    Panel panel = new Panel();
     Button btn = new Button();
 
-    boolean open;
 
     Label mensagem = new Label();
     Label background = new Label();
 
-    TelaCadastroUsuario() throws SQLException {
+    public TelaCadastroUsuario() throws SQLException {
 
-        String casa = "/home/keven/Documentos/MavenAplicativo/demo/projects/logging/src/main/java/Images/telaUsuario.png";
-        String senai = "C:/Users/53688621808/IdeaProjects/AplicativoTeste/src/main/java/org/example/Images/telaUsuario.png";
         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaUsuario.png";
-        String bosch2 = "projects/logging/src/main/java/Images/telaUsuario.png";
-
-        background.setIcon(new ImageIcon(casa));
+        background.setIcon(new ImageIcon(bosch));
         background.setSize(650, 1000);
         background.setLocation(0, 0);
 

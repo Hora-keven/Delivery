@@ -1,4 +1,4 @@
-
+package org.example.Classes;
 
 public class Lanche {
     String nome;
