@@ -20,7 +20,7 @@ public class Aplicativo extends Tela {
   Button btnLogar = new Button();
 
   public Aplicativo() {
-    String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaPrincipal.png";
+    String bosch = "C:\\Users\\53688621808\\IdeaProjects\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaPrincipal.png";
 
     btnCadastroRestaurante.setSize(270, 50);
     btnCadastroRestaurante.setLocation(190,600);
@@ -33,7 +33,7 @@ public class Aplicativo extends Tela {
     background.setSize(650, 1000);
     background.setLocation(0, 0);
 
-    btnCadastroUsuario.setText("Cadastro Usuário");
+    btnCadastroUsuario.setText("Cadastrar Usuário");
     btnCadastroUsuario.addActionListener(new ActionListener(){
       public void actionPerformed( ActionEvent evt) {
         
@@ -58,7 +58,7 @@ public class Aplicativo extends Tela {
         } });
      
     
-    btnCadastroRestaurante.setText("Cadastro Restaurante");
+    btnCadastroRestaurante.setText("Cadastrar Restaurante");
     btnCadastroRestaurante.addActionListener(new ActionListener(){
       public void actionPerformed( ActionEvent evt) {
         

@@ -6,9 +6,6 @@ public class Pedidos {
         return precoTotal;
     }
 
-    public void setPrecoTotal(float precoTotal) {
-        this.precoTotal = precoTotal;
-    }
 
     float precoTotal;
 

@@ -20,7 +20,7 @@ public class TelaFinal extends Tela {
 
     TelaFinal(int fkU) throws SQLException {
         this.fkU = fkU;
-        String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaLanche.png";
+        String bosch = "C:\\Users\\53688621808\\IdeaProjects\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaFinal.png";
 
         background.setIcon(new ImageIcon(bosch));
         background.setSize(650, 1000);

@@ -40,7 +40,7 @@ public class TelaCadastroUsuario extends Tela{
 
     public TelaCadastroUsuario() throws SQLException {
 
-        String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaUsuario.png";
+        String bosch = "C:\\Users\\53688621808\\IdeaProjects\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaUsuario.png";
         background.setIcon(new ImageIcon(bosch));
         background.setSize(650, 1000);
         background.setLocation(0, 0);

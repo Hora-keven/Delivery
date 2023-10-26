@@ -43,7 +43,7 @@ public class TelaCadastroRestaurante extends Tela{
     Label background = new Label();
 
     public TelaCadastroRestaurante() throws SQLException {
-        String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaRestaurante.png";
+        String bosch = "C:\\Users\\53688621808\\IdeaProjects\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\telaRestaurante.png";
 
         mensagem.setSize(350, 100);
         mensagem.setLocation(180, 420);

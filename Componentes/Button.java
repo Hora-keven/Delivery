@@ -11,7 +11,7 @@ public class Button extends JButton {
         this.setForeground(Color.black);
         this.setFont(new Font("Arial", Font.BOLD, 18));
        
-        setBackground(Color.LIGHT_GRAY);
+        setBackground(new Color(255, 153, 0));
         
       
     }

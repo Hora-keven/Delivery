@@ -44,7 +44,7 @@ import java.util.ArrayList;
          lanches.setOpaque(false);
 
          Label background = new Label();
-         String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaApagar.png";
+         String bosch = "C:\\Users\\53688621808\\IdeaProjects\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaApagar.png";
  
          background.setIcon(new ImageIcon(bosch));
          background.setSize(650, 1000);

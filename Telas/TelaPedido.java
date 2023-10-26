@@ -6,7 +6,7 @@ import org.example.Componentes.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.Timer;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -16,6 +16,7 @@ public class TelaPedido extends Tela{
     public String getCPF() {
         return CPF;
     }
+    Timer tempo = new Timer();
 
     public int getQuantidade() {
         return quantidade;
@@ -30,7 +31,6 @@ public class TelaPedido extends Tela{
     int quantidade = 0;
     Pedidos pedido;
     FuncaoBanco db = new FuncaoBanco();;
-    String selecionado;
     String CPF;
     Panel panel = new Panel();
     Button btn = new Button();
@@ -46,7 +46,7 @@ public class TelaPedido extends Tela{
         restaurantes.setOpaque(false);
 
         Label background = new Label();
-        String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaPedido.png";
+        String bosch = "C:\\Users\\53688621808\\IdeaProjects\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaPedido.png";
 
         background.setIcon(new ImageIcon(bosch));
         background.setSize(650, 1000);
@@ -62,7 +62,6 @@ public class TelaPedido extends Tela{
 
         btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-
                 try {
                     cardapioDoRestaurante();
                 } catch (SQLException e) {
@@ -82,7 +81,7 @@ public class TelaPedido extends Tela{
                 try {
                     inserirPedido();
                     new TelaFinal(getFkU());
-
+                    dispose();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

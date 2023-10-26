@@ -41,7 +41,7 @@ public class TelaCadastroLanche extends Tela {
         mensagem.setSize(350, 100);
         mensagem.setLocation(300, 420);
 
-        String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaLanche.png";
+        String bosch = "C:\\Users\\53688621808\\IdeaProjects\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\TelaLanches.png";
 
         background.setIcon(new ImageIcon(bosch));
         background.setSize(650, 1000);

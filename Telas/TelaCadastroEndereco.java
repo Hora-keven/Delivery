@@ -7,9 +7,8 @@ import java.awt.event.*;
 import javax.swing.ImageIcon;
 import java.sql.SQLException;
 
-public class TelaCadastroEndereco {
+public class TelaCadastroEndereco extends Tela {
     Input eixoX = new Input();
-    Tela tela = new Tela();
     Panel panel = new Panel();
     Button btn = new Button();
     Label background = new Label();
@@ -39,7 +38,7 @@ public class TelaCadastroEndereco {
 
     TelaCadastroEndereco(String nome, int opcao) {
 
-        String bosch = "C:\\Users\\ct67ca\\Documents\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\CadastroEndereco.png";
+        String bosch = "C:\\Users\\53688621808\\IdeaProjects\\AplicativoTeste\\src\\main\\java\\org\\example\\Images\\CadastroEndereco.png";
 
         this.nome = nome;
         this.opcao = opcao;
@@ -68,21 +67,21 @@ public class TelaCadastroEndereco {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                tela.dispose();
+                dispose();
 
             }
         });
         panel.add(background);
-        tela.add(eixoX);
-        tela.add(eixoY);
-        tela.add(btn);
-        tela.add(panel);
-        tela.setVisible(true);
+        add(eixoX);
+        add(eixoY);
+        add(btn);
+        add(panel);
+        setVisible(true);
     }
 
     public void inserindoEndereco(String formato) throws SQLException {
         db = new FuncaoBanco();
-        if (verificaEixoX() == true) {
+        if (verificaEixoX()) {
             int eixoX = Integer.parseInt(getEixoX());
             int eixoY = Integer.parseInt(getEixoY());
 

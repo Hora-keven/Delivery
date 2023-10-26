@@ -11,11 +11,6 @@ public class Lanche {
         this.fk_restaurante = fk_restaurante;
     }
 
-    public Lanche(String nome, float preco) {
-        this.nome = nome;
-        this.preco = preco;
-
-    }
 
     public String getNome() {
         return nome;
